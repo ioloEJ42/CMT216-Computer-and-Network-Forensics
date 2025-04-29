@@ -1,0 +1,90 @@
+\chapter{Findings}
+
+\section{Implications Regarding Taurus Smith and Accomplices}
+The forensic analysis has implicated Ken Warren and an individual named Mike concerning Taurus Smith's case. Ken Warren's digital authorship trails across documents tied to illicit activities, especially within files stored under the 'Frodo' account, suggesting he may have employed this alias. This pattern of authorship signifies possible measures to mask his true identity and involvement.
+
+Simultaneously, evidence points to Mike due to his ownership of documents like "Basic Donuts.doc" and "Dad.xlsx," the latter containing hints towards a confidential recipe. The association of these files with Mike's account signals potential unauthorized dissemination of proprietary information.
+
+The conjunction of metadata implicating Ken Warren and Mike is a critical lead in the investigation, suggesting coordinated actions with Taurus Smith in the handling and potential leak of sensitive corporate data.
+
+\section{Travel Intentions of Taurus Smith}
+The investigation into the digital artefacts related to Taurus Smith's travel intentions has yielded conclusive evidence of planned movement to a specific location. The evidence indicates a premeditated intent to travel from Cardiff to Hawaii.
+
+Central to these findings is the image file f0066494.png discovered on the USB flash drive, which detailed a flight itinerary to Hawaii. The recovery of such a precise document point to deliberate travel planning and suggests a planned departure from the suspect's routine locale.
+
+Supporting the flight plan, an intercepted message from Exhibit C's Wireshark capture stating, "See you in Hawaii! *F" aligns perfectly with the discovered itinerary plan. The informal sign-off implies familiarity and possibly an accomplice or a known contact in Hawaii, which could be pertinent to the investigation.
+
+Further verifying the travel intent, cached internet browsing data, specifically CACHE\_003 from the Mozilla browser profile on Taurus Smith's laptop, showed a pattern of visiting airport websites. This activity demonstrates active research and logistical preparation for travel, reinforcing the intent to move to Hawaii as indicated by the other pieces of evidence.
+
+It is noteworthy to mention that geolocation data were absent within the expected digital artefacts such as photographs. This could be indicative of a deliberate attempt to erase or avoid leaving digital traces of the suspect's geographic movements. Despite this, the triangulation of the flight plan, communication evidence, and web browsing history provide a coherent narrative that strongly suggests Taurus Smith's intentions to travel to Hawaii.
+
+The combined digital evidence paints a clear picture of Taurus Smith's preparations for travel. These actions were conducted with a degree of planning and discretion that suggests an intent to conceal the specifics of the movements. This finding of planned travel to Hawaii is critical to the understanding of Smith's activities and potential next steps.
+
+\section{Recovery of Hidden User Accounts}
+The investigation has successfully uncovered and analysed various user accounts that were concealed on Taurus Smith's laptop. The accounts were hidden using multiple methods, each designed to obfuscate their presence and purpose.
+
+The use of benign and culturally familiar names such as "Bilbo Baggins," "Frodo Baggins," and "Sam" for user accounts was identified as a deliberate tactic to mislead investigators and avoid drawing attention to the accounts' true purposes. An account named "New folder" was also discovered, which contained no files or user activity, suggesting it may have been a placeholder for future use or a remnant of a previously cleaned account.
+
+Additionally, the "Penelope Olsen" account presented a minimal digital footprint, with no corresponding user profile or document directory found, indicating an attempt to maintain a low profile on the system, potentially for covert activities.
+
+Using AccessData Registry Viewer, critical user profile information was recovered from the system's registry files. The Security Accounts Manager (SAM) and SECURITY hives of the system registry were examined in-depth, revealing the creation times and last login dates of these accounts, thus providing a clear timeline of their activity.
+
+The analysis process also involved reviewing system logs and file ownership data, which shed light on the usage patterns of these hidden accounts. The correlation of login events and document access patterns with other evidence, such as network logs and communication intercepts, has been pivotal in elucidating the role these accounts played in the suspect's activities.
+
+The recovery and analysis of user profiles have significantly contributed to the investigation by establishing a clearer understanding of the accounts' activities and their potential link to unauthorized operations. The information assembled from this analysis has been crucial in piecing together the suspect's actions and has brought the investigation closer to identifying all user accounts associated with Taurus Smith's laptop.
+
+The findings regarding the hidden user accounts have been thoroughly documented in the technical report. This documentation ensures the transparency of the investigative process and allows for the reproducibility of the results by other forensic examiners. For detailed accounts of the analysis process and the specific forensic techniques utilized, reference is made to the sections outlined in the report.
+
+\section{Identification and Recovery of Proprietary Recipes}
+During the forensic investigation into Taurus Smith's USB drive, several proprietary recipes from Lard\&land Donuts were identified and recovered. These recipes were concealed using sophisticated data-hiding techniques, suggesting an unauthorized acquisition and potential intent to disseminate confidential culinary formulas.
+
+The forensic examination led to the uncovering of multiple documents containing recipes that were disguised as innocuous files:
+
+\begin{itemize}
+    \item \textbf{Steganography in Images:} The files Bean.png and coconuts.png were initially flagged during the review of steganographic methods and were later confirmed to contain hidden recipes using steganalysis tools.
+    
+    \item \textbf{Decrypted Document:} The Lard Land PDF required decryption, as detailed in Section 7.3. Upon decrypting, a detailed recipe was found that corresponded with the secret recipes of Lard\&land Donuts.
+    
+    \item \textbf{Recovered Deleted File:} The file fragment Unalloc\_8524\_43768320\_1003921408 was retrieved from unallocated space and revealed a recipe that had been deliberately deleted, indicating an attempt to obscure this sensitive information.
+    
+    \item \textbf{Misdirected Document:} The Basic Donuts.doc file was discovered in a non-descript directory path, /img\_Taurus Laptop.001/vol\_vol2/Family Photos/My Docs/, an attempt to hide it among personal files.
+    
+    \item \textbf{Link Discovery in Network Traffic:} Analysis of Exhibit D's PCAP file led to the identification of a URL which directed to an online repository containing a recipe, as described in Section 8.5.1.
+\end{itemize}
+
+The investigation revealed multiple methods employed to hide the recipes:
+
+\begin{itemize}
+    \item \textbf{Steganography:} Advanced steganographic techniques were used to embed recipes within image files, which required specialized software to decode.
+    
+    \item \textbf{Encryption:} The Lard Land PDF file was encrypted, and successfully decrypted using the tool John The Ripper, revealing its contents.
+    
+    \item \textbf{Deletion and Recovery:} The data fragment representing a deleted recipe was recovered from unallocated space, showcasing an effort to erase its trace from the system.
+    
+    \item \textbf{Directory Misplacement:} The placement of Basic Donuts.doc in an unrelated directory was a tactic used to divert attention from its true content.
+    
+    \item \textbf{Hidden Hex Message:} A significant discovery was a hex-encoded message in the dad.xls file, suggesting the importance of the 'Special Pink Donut' and hinting at the existence of the 'Honey Duff Recipe'. Though the recipe was not directly found, the message itself indicates its significance and the lengths taken to conceal it.
+\end{itemize}
+
+The combination of these data-hiding techniques underscores a deliberate effort to protect and conceal Lard\&land Donuts' proprietary recipes. The sophistication of these methods indicates a high level of technical skill and an understanding of forensic countermeasures.
+
+The findings from the investigation into the hidden recipes have been pivotal in understanding the extent of the unauthorized access and the methods used to conceal the theft of proprietary information. This aspect of the investigation has provided clear evidence of the suspect's activities related to the misappropriation of Lard\&land Donuts' confidential recipes.
+
+\section{Detailed Network Activity Report}
+The comprehensive network activity analysis conducted as part of this investigation has provided substantial insights into the communications attributed to Taurus Smith, suspected of unauthorized dissemination of proprietary information. The meticulous examination of packet captures from Exhibits B, C, D, and E via Wireshark and manual inspection has revealed the following:
+
+Examination of Exhibit B highlighted a TCP three-way handshake between IP addresses 192.168.1.157 and 192.168.1.137, indicating the initiation of a communication session. A subsequent TCP data transfer encapsulated within SSL suggests the transmission of encrypted content, indicating a concern for the confidentiality of the data being exchanged.
+
+The secure message from Exhibit B sent from IP address 192.168.1.157, coupled with TCP [PSH, ACK] flags, underscores the urgency of the data transfer. Duplicate ACKs and Fast Retransmission events within the packets further imply a robust error recovery mechanism, ensuring data integrity during transfer.
+
+Exhibit D's analysis was particularly revealing, with a TCP data transfer from Taurus Smith's computer (192.168.1.158) to host 192.168.1.43 involving a significant payload containing what appeared to be a detailed proprietary recipe. The data included a list of ingredients, cooking instructions, and URLs, indicative of the transmission of Lard\&land Donuts' 'Honey Duff Donuts' recipe.
+
+The message content and the method of transmission via TCP, marked with the [PSH, ACK] flags, suggest a deliberate action to disseminate sensitive corporate information. The use of a VMware virtual machine by the recipient (host 192.168.1.43) points to a possible attempt to mask the true endpoint of the data or to add a layer of anonymity to the communications.
+
+In Exhibit E, TCP communications between 192.168.1.158 and 192.168.1.43, as well as the exchange of ARP information, were consistent with an established pattern of network behaviour. Notably, a message at time 15.101793 from Taurus Smith's computer mentioned the transmission of 'steged' files, revealing the use of steganography. The mention of 'secure ways/channels' implies the use of encrypted communications to maintain the confidentiality of the transmitted data.
+
+Additionally, Exhibit C provided further context to the network activity, reinforcing the patterns observed in other exhibits. The analysis of this exhibit would have focused on further substantiating the secure and confidential nature of the data transfers, possibly adding more detail on the timing, content, or methods used in these transmissions.
+
+The implications of these findings are significant. The secure transfer of data, the deliberate use of steganography and secure channels, and the transmission of proprietary recipes strongly support the hypothesis that Taurus Smith engaged in unauthorized and potentially illicit activities. The network activity paints a picture of sophisticated methods employed to transfer sensitive information discreetly.
+
+The network activity report, with its technical nuances and contextual implications, is crucial in constructing the narrative of Taurus Smith's alleged involvement in the misappropriation and dissemination of confidential corporate recipes. This report will form a key element of the evidence presented in the case against Taurus Smith.

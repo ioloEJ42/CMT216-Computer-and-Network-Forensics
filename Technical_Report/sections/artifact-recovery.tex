@@ -1,0 +1,196 @@
+\chapter{Artifact and Evidence Recovery}
+
+\section{Strategies for Data Carving}
+Data carving is a critical process in digital forensics used to recover files based on content patterns that identify the start and end of files, especially when the file system structure is unavailable or damaged. It is particularly useful in uncovering evidence that may have been deleted or attempts made to conceal it.
+
+\textbf{PhotoRec Carver Module:} In this case, the PhotoRec Carver Module, a tool designed to recover lost files including videos, documents, and archives from hard disks, CD-ROMs, and lost pictures from camera memory, was employed. The module bypasses the file system and goes after the underlying data, making it an excellent tool for carving out files from unallocated space.
+
+\textbf{Recovery of Flight Plan:} The PhotoRec module successfully uncovered a file, f0066494.png, which is a photo depicting a flight plan from Cardiff to Hawaii. This significant find corroborates the hypothesis that the suspect, Taurus Smith, was contemplating a flight to Hawaii, possibly as an escape route following the alleged corporate espionage act.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|p{3cm}|p{6cm}|p{5cm}|}
+\hline
+\textbf{Metadata Field} & \textbf{Value} & \textbf{Notes} \\
+\hline
+Name & /img\_Taurus Laptop.001/vol\_vol2/\$CarvedFiles/1/f0066494.png & The path indicates the file was recovered from a carved-out space on the volume. \\
+\hline
+Type & Carved & Indicates file was not found in the active file structure but recovered from unallocated space. \\
+\hline
+MIME Type & image/png & File is a PNG image, commonly used for storing pictures. \\
+\hline
+Size & 636468 & The size of the image file in bytes. \\
+\hline
+File Name Allocation & Unallocated & The file name does not have an entry in the file system table. \\
+\hline
+Metadata Allocation & Unallocated & Metadata does not have an entry in the file system table. \\
+\hline
+Modified & 0000-00-00 00:00:00 & No modification date is available; possibly due to file carving. \\
+\hline
+Accessed & 0000-00-00 00:00:00 & No accessed date is available; possibly due to file carving. \\
+\hline
+\end{tabular}
+\caption{Image 1 f0066494.png - Location: /img\_Taurus Laptop.001/vol\_vol2/\$CarvedFiles/1/f0066494.png}
+\label{table:image1-metadata}
+\end{table}
+
+\textbf{Notes:}
+\begin{itemize}
+    \item The file is a PNG image recovered from unallocated space, indicating possible deletion or use of hiding techniques.
+    \item The absence of file system timestamps suggests that metadata was not recorded or has been wiped, which can happen when files are deleted or when certain data-hiding techniques are employed.
+    \item The file's hashes are unique, and no match was found in the hash database, which may indicate the file is not a common image or has been altered.
+    \item The Internal ID can be used for referencing the file in further analysis and reporting within the forensic investigation workflow.
+\end{itemize}
+
+\section{Techniques for Revealing Steganography}
+Steganography poses a unique challenge in digital forensics as it involves the concealment of information within other, seemingly innocuous files. It can be used to hide text, images, or other data within various file types, making it a favoured method for surreptitiously transmitting information. The tool used online was: "https://stylesuxx.github.io/steganography/"
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|p{3cm}|p{6cm}|p{5cm}|}
+\hline
+\textbf{Attribute} & \textbf{Value} & \textbf{Notes} \\
+\hline
+Name & /img\_Taurus Laptop.001/vol\_vol2/My Shared Folder/bean.png & Path suggests the image was stored in a shared folder, likely accessible to other users. \\
+\hline
+Type & File System & Indicates the file system recognized the file normally. \\
+\hline
+MIME Type & image/png & Standard PNG image format. \\
+\hline
+Size & 662089 & Relatively large file size for a PNG image, which might be due to embedded data. \\
+\hline
+File Name Allocation & Allocated & The file entry is present in the file system. \\
+\hline
+Metadata Allocation & Allocated & Metadata entry is present in the file system. \\
+\hline
+Modified & 2010-02-02 12:02:26 GMT & The modification date could align with the timeline of the suspected illegal activity. \\
+\hline
+Accessed & 2010-03-08 00:00:00 GMT & The access date does not immediately follow the modification date, which may warrant further investigation. \\
+\hline
+Created & 2010-01-03 00:16:20 GMT & The creation date can help establish a timeline. \\
+\hline
+Changed & 0000-00-00 00:00:00 & The absence of a change date is abnormal and may indicate tampering with the metadata. \\
+\hline
+MD5 & a91d377ba346b0363a3c31fd4eaabd37 & For verification and comparison with other forensic tools. \\
+\hline
+SHA-256 & a7a04a6213f8402f4777290173ad06027 9bd0243bbbea629662f0c098fb5506a & Additional hash for increased verification accuracy. \\
+\hline
+Hash Lookup Results & UNKNOWN & Hash did not match any known files in the database, suggesting it may be unique or custom content. \\
+\hline
+Internal ID & 7502 & Reference number for forensic software. \\
+\hline
+Directory Entry & 3590323 & Forensic tool reference for file location. \\
+\hline
+Sectors & Starting Address: 115766, length: 1294 & Physical location on the storage medium. \\
+\hline
+\end{tabular}
+\caption{MetaData Table For bean.png}
+\label{table:bean-metadata}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|p{3cm}|p{6cm}|p{5cm}|}
+\hline
+\textbf{Attribute} & \textbf{Value} & \textbf{Notes} \\
+\hline
+Name & /img\_Taurus Laptop.001/vol\_vol2/My Shared Folder/coconuts.png & A similar path as 'bean.png' indicates a common storage location or categorization. \\
+\hline
+Type & File System & The file is recognized by the file system. \\
+\hline
+MIME Type & image/png & Consistent with the PNG format of 'bean.png'. \\
+\hline
+Size & 1174646 & Even larger file size than 'bean.png', potentially indicative of additional embedded data. \\
+\hline
+File Name Allocation & Allocated & The file is accounted for in the file system. \\
+\hline
+Metadata Allocation & Allocated & Metadata is recorded and accounted for. \\
+\hline
+Modified & 2010-02-02 12:02:26 GMT & Identical modification date to 'bean.png', suggesting simultaneous action or batch processing. \\
+\hline
+Accessed & 2010-03-08 00:00:00 GMT & The access date is identical to 'bean.png', and may be system-generated or due to user access. \\
+\hline
+Created & 2010-01-03 00:16:20 GMT & The creation date matches 'bean.png', suggesting a common origin or event. \\
+\hline
+Changed & 0000-00-00 00:00:00 & Like 'bean.png', the lack of a changed date is unusual. \\
+\hline
+MD5 & f0440dd15ce0d70c0148ee7fdd83f208 & Essential for evidence verification. \\
+\hline
+SHA-256 & 82ad87033e881162f7862d26369473a1fb3d8c4a453bd3d3f7fc5d2d98789ff6 & Provides a higher level of assurance for evidence integrity. \\
+\hline
+Hash Lookup Results & UNKNOWN & No database match, suggesting custom content. \\
+\hline
+Internal ID & 7500 & Used for tracking within forensic tools. \\
+\hline
+Directory Entry & 963234 & Helps locate the file within the forensic toolset. \\
+\hline
+Sectors & Starting Address: 113471, length: 2295 & Specifies the file's location on the storage device. \\
+\hline
+\end{tabular}
+\caption{Metadata Table for coconuts.png}
+\label{table:coconuts-metadata}
+\end{table}
+
+\textbf{Notes on the Metadata:}
+\begin{itemize}
+    \item The identical timestamps for creation, modification, and access across both files suggest they may have been created or modified as part of the same event or process.
+    \item The absence of a 'changed' timestamp could indicate that the metadata has been intentionally altered to hide the last modification date, a common tactic in covering tracks.
+    \item The large file sizes, especially relative to typical PNG images, and the fact that they contained hidden recipes, indicate that steganography may have been used.
+    \item The hash values are unique, which means they do not correspond to known images and thus might contain custom-embedded data.
+    \item The location of both files in a shared folder implies that the data was meant to be accessed by more than one user or was placed there for ease of access by an unauthorized user.
+\end{itemize}
+
+The packet capture (pcap) analysis section revealed anomalous data packets that suggest the transmission of steganographically encoded files. These packets differed in size and pattern from standard image or document transfers, hinting at additional embedded data.
+
+A steganography application known as S-tools was discovered on the suspect's device. This software can embed and extract hidden data within image files, making it a potent tool for concealing and transmitting proprietary information covertly.
+
+\textbf{Implications of the Steganography Evidence:}
+
+The presence and use of S-tools on Taurus Smith's device have significant implications for the case:
+\begin{itemize}
+    \item \textbf{Usage Proficiency:} The completion of the S-tools tutorial by Taurus Smith and the encryption/decryption of 'zebra.bmp' with embedded Shakespeare literature indicate not only familiarity with the software but also proficiency in its use. This suggests that Smith likely used the same technique to conceal the proprietary recipes within other image files.
+    \item \textbf{Intention to Conceal:} The deliberate use of steganography implies an intention to hide and transport information without detection, supporting the hypothesis of willful participation in corporate espionage activities.
+    \item \textbf{Potential for Additional Evidence:} Since steganography was used, other files in Smith's possession should be scrutinized for hidden content. The discovery of 'zebra.bmp' establishes a precedent that other seemingly benign files may also contain concealed data.
+    \item \textbf{Link to Other Suspects:} The existence of steganographically hidden information could also implicate other individuals who had access to the files. Anyone with knowledge of or access to the steganographically altered files might be part of the illicit activity, or at the very least, complicit in the suspect's actions.
+\end{itemize}
+
+\section{Decryption of Encrypted Files}
+The decryption of encrypted files often reveals information that could be crucial for an investigation. In this case, various encrypted files were successfully decrypted, revealing both relevant and non-relevant information.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|p{3.8cm}|p{2cm}|p{1.5cm}|p{1.8cm}|p{2.5cm}|p{3cm}|}
+\hline
+\textbf{File Name} & \textbf{Decryption Status} & \textbf{Password Used} & \textbf{Owner} & \textbf{Methodology Used} & \textbf{Notes} \\
+\hline
+Retire Scenario Adjustable for Tax Inflation.xls & Successfully Decrypted & secret & Ken Warren & Wordlist (rockyou.txt) & The owner marked as "Ken Warren" could indicate an accomplice. \\
+\hline
+Lard Land Super Donuts Instructions.pdf & Successfully Decrypted & cm3111 & Ken Warren & Incremental Attack & Contained proprietary recipe; crucial to the case. \\
+\hline
+Mortgage accounting inc escrow.xls & Successfully Decrypted & hobbit05 & Ken Warren & Incremental Attack & The owner marked as "Ken Warren" could indicate an accomplice. \\
+\hline
+4429-secret.zip & Successfully Decrypted & ring & Unknown & Wordlist (rockyou.txt) & Contained images; no steganographic data found. \\
+\hline
+tyson\&orc.zip & Not Decrypted & N/A & Unknown & Incremental Attack & No passwords were found after through rockyou.txt or an incremental attack over 36 hours. \\
+\hline
+\end{tabular}
+\caption{Decryption Results}
+\label{table:decryption-results}
+\end{table}
+
+\textbf{Decryption Methodologies:}
+\begin{itemize}
+    \item \textbf{Wordlist Attack:} The 'rockyou.txt' wordlist was utilized for decryption attempts, which is known for its effectiveness in cracking commonly used passwords.
+    \item \textbf{Incremental Attack:} When the wordlist attack was unsuccessful, an incremental attack was executed for the 'tyson\&orc.zip' file, which involves trying all possible password combinations. However, after 36 hours of continuous operation, no passwords were retrieved from the hash of the zip.
+\end{itemize}
+
+\textbf{Notes on Decrypted Content:}
+\begin{itemize}
+    \item The Excel sheets, while not yielding any significant findings, have provided a new lead in the investigation with the ownership attributed to Ken Warren. This link necessitates further scrutiny of Warren's potential involvement or connection to Taurus Smith.
+    \item The images found within 'secret.zip' underwent steganographic analysis, which did not reveal any hidden information. However, the absence of steganographic data does not rule out other forms of concealment or relevance.
+    \item The 'tyson\&orc.zip' remains a critical piece of the investigation due to its resistance to decryption. It is plausible that a more robust or less common password protects this file, indicating the potential for highly sensitive information within, however, upon inspecting through Autopsy, only a single image can be found within the image, named 'tyson\&orc'
+\end{itemize}
+
+\textbf{Timeline Analysis of Bean.png}
+
+Autopsy's integrated Timeline Analysis Tool was utilised to look at any key actions the threat actors took within a specific timeframe. An example of this was used to analyse 'Bean.png'. As you can see, the timeline analysis shows the key actions that Taurus Smith had done within the time frame shown, in this specific scenario, Bean.png was accessed at 2010-03-08 at 00:00:00 (further elucidating the idea that an EXIF scrubbing tool was utilised). A notable piece of evidence shown is that the document "Theft Of Intellectual Property.." document was accessed at the same time, further providing proof that Taurus Smith had direct access to recipes and that she was conscious of her own decisions to steal intellectual property.

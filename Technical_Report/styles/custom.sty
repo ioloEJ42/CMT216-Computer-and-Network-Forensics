@@ -1,0 +1,70 @@
+% Custom styles and packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{paralist}
+\usepackage{verbatim}
+\usepackage{subfig}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{appendix}
+\usepackage{csquotes}
+\usepackage[style=ieee]{biblatex}
+\addbibresource{references.bib}
+
+% Define colors for forensic report
+\definecolor{forestgreen}{RGB}{34, 139, 34}
+\definecolor{darkblue}{RGB}{0, 0, 139}
+\definecolor{maroon}{RGB}{128, 0, 0}
+\definecolor{lightgray}{RGB}{211, 211, 211}
+
+% Custom command for evidence labels
+\newcommand{\evidence}[1]{\textcolor{maroon}{\textbf{Evidence #1}}}
+
+% Custom command for findings
+\newcommand{\finding}[1]{\textcolor{forestgreen}{\textbf{Finding:} #1}}
+
+% Custom command for technical notes
+\newcommand{\technote}[1]{\textcolor{darkblue}{\textit{Technical Note:} #1}}
+
+% Custom environment for technical details
+\newenvironment{techdetails}
+{\begin{tcolorbox}[colback=lightgray!50,colframe=darkblue,title=Technical Details]}
+{\end{tcolorbox}}
+
+% Custom environment for evidence box
+\newenvironment{evidencebox}[1]
+{\begin{tcolorbox}[colback=lightgray!30,colframe=maroon,title=Evidence #1]}
+{\end{tcolorbox}}
+
+% Custom listings style for code and data snippets
+\lstset{
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{forestgreen},
+    stringstyle=\color{maroon},
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    showstringspaces=false
+}

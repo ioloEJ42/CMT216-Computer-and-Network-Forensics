@@ -1,0 +1,182 @@
+\chapter{Detailed Analysis}
+
+\section{Identification of Implicated Individuals}
+The digital forensic investigation has identified Ken Warren as a potentially implicated individual. Metadata analysis has shown that Ken Warren was the last author of multiple documents that are linked to illegal activities. Notably, the document labelled "Passwords and stuff.docx" lists Ken Warren as the last author. This document, among others, was found within the user account directories associated with the alias 'Frodo,' indicating that Ken Warren may be operating under this pseudonym.
+
+In parallel, the investigation has brought attention to another individual, Mike, whose digital footprint has surfaced in the examination of key documents. Mike is listed as the owner of "Basic Donuts.doc," a file containing one of the proprietary recipes. He is also the owner of "Dad.xlsx," which contained an embedded message leading to the 'honey duff doughnut' recipe. The correlation of these files with Mike's user account underscores his potential involvement with the unauthorized handling of sensitive information.
+
+The repeated presence of Ken Warren's authorship in critical files, particularly those within Frodo's account, raises suspicion and suggests a deliberate attempt to conceal his identity behind an alias. The analysis of Mike's files, containing crucial recipe information, aligns with the narrative of information exfiltration.
+
+The metadata extracted from these files has provided a thread connecting both Ken Warren and Mike to the case at hand.
+
+\section{Analysis of Travel-Related Evidence}
+The analysis of travel-related evidence is a crucial aspect when investigating cases that involve potential cross-border activities or flight risk scenarios. This section provides a detailed examination of all digital artefacts that may indicate travel intentions, plans, or actions. The focus is to establish a cohesive narrative that aligns digital evidence with the suspected movements of individuals involved in the case.
+
+\subsection{Examination of Itineraries and Booking Information}
+The forensic examination of the USB flash drive image provided a pivotal piece of evidence in the form of 'f0066494.png,' a file depicting a meticulously detailed flight plan from Cardiff to Hawaii. The recovery of this file through data carving techniques not only underscores the suspect's technical acumen but also solidifies the theory that Taurus Smith was planning significant travel.
+
+Adding to this, Exhibit C's Wireshark capture analysis reveals a message stating, "See you in Hawaii! *F." This direct message is a substantial corroboration of the intent to travel, linking the flight plan to an anticipated meeting in Hawaii. The presence of the informal sign-off "*F" may also suggest a level of familiarity with the recipient, potentially hinting at an accomplice or contact waiting at the destination.
+
+Further bolstering these findings, an examination of the cache files from Taurus Smith's laptop—specifically 'CACHE\_003' located within the Mozilla browser profile—revealed that the suspect had been visiting airport websites. This digital footprint is indicative of active travel research and preparations, likely in connection to the aforementioned flight to Hawaii.
+
+The cache files provide a timeline of website visits, which, when cross-referenced with other evidence such as the flight plan image and the Wireshark message, present a consistent and compelling narrative of Smith's travel arrangements.
+
+The triangulation of these three separate strands of digital evidence—flight plan image, communication intercepts, and internet browsing history—paints a clear picture of premeditation and purpose in Smith's actions. It suggests that the suspect was not only planning to travel but was also engaged in active preparations and had communicated these plans to a third party.
+
+\subsection{Geolocation Data Analysis}
+Geolocation data analysis involves the examination of digital artefacts to extract geographical coordinates or location markers that could provide insights into the movements or intended movements of individuals under investigation. However, in the context of this case, the forensic analysis using Autopsy has not yielded geolocation data from the expected sources, such as image metadata typically found in the EXIF headers.
+
+\textbf{Introduction to the Issue:}\\
+During the digital forensic examination of the suspect's files, it was observed that potential sources of geolocation data, such as photographs and documents, appear to have been deliberately stripped of EXIF metadata which would've contained rich information, including the time a photo was taken and the geographical coordinates of the location. The absence of such data is indicative of a conscious effort to remove traces that could reveal the suspect's locations or travel patterns.
+
+\textbf{Implications of EXIF Data Scrubbing:}\\
+The lack of geolocation data presents several implications for the investigation:
+\begin{itemize}
+    \item \textbf{Intentional Obfuscation:} The deliberate scrubbing of EXIF data suggests a high level of sophistication and awareness by the suspect. This act of obfuscation can be interpreted as an attempt to avoid detection or to complicate the investigative process.
+    \item \textbf{Potential Precautionary Measures:} The suspect may have employed precautionary measures to prevent geolocation tracking, which could be consistent with actions taken to conceal illicit activities.
+    \item \textbf{Alternative Investigative Avenues:} The absence of direct geolocation data necessitates the exploration of alternative avenues for gathering location-based evidence. This could include analysis of network logs, travel documents, and communication metadata.
+\end{itemize}
+
+The absence of EXIF geolocation data does not preclude the presence of other forms of digital evidence that could inform the suspect's location history or travel plans. Further technical examination of the digital artefacts, coupled with a broader contextual analysis of the suspect's known associates and behaviours, may yield supplementary information that can compensate for the lack of direct geolocation evidence.
+
+\section{Examination of User Accounts}
+Examination of user accounts forms a key stage of the forensic investigation, addressing one of the key goals of the forensic report: identifying all user accounts on Taurus Smith's laptop, understanding the methods of their concealment, and detailing the recovery process. This section draws upon findings detailed in the references section and leverages information discussed in "3.4.3. User Account Identification and Recovery Techniques."
+
+\subsection{Methods of Concealment}
+Analysis suggests the use of several methods to conceal user accounts on Taurus Smith's laptop:
+\begin{itemize}
+    \item \textbf{Account Names as a Distraction:} The use of familiar literary names for user accounts (e.g., "Bilbo Baggins," "Frodo Baggins," "Sam") could be a deliberate tactic to mislead or minimize suspicion regarding the account's purpose.
+    \item \textbf{Unused Profile Directories:} The presence of an account named "New folder" with no associated files or activity may indicate an attempt to either hide the account post-use or set it up in anticipation of future use without drawing attention.
+    \item \textbf{Accounts with Minimal Footprint:} The "Penelope Olsen" account, which lacks a corresponding user profile or document directory, suggests an effort to create an account with a minimal digital footprint, potentially for covert activities.
+\end{itemize}
+
+\subsection{Recovery and Analysis of User Profiles}
+The process of recovering and analysing user profiles involved a meticulous review of the system's registry files, particularly the SAM and SECURITY hives, as well as system logs and file ownership data:
+\begin{itemize}
+    \item \textbf{Forensic Software:} Utilization of forensic software allowed for the recovery of user profile information even when attempts had been made to delete or obscure such profiles.
+    \item \textbf{Registry Examination:} An in-depth analysis of the SAM hive revealed the creation times and last login dates associated with the user accounts, providing a timeline of account activity. These findings are crucial in establishing when these accounts were active and potentially linked to unauthorized activities.
+    \item \textbf{Correlation with Other Evidence:} The review of login events and document access patterns provided further insight into the usage of these accounts. The cross-referencing of this information with other evidence collected (e.g., network logs, and communication intercepts) helped to piece together a more complete picture of each account's role in the suspect's activities.
+\end{itemize}
+
+The recovery and analysis of these user profiles have been instrumental in progressing toward answering the pivotal question of whether all user accounts on Taurus Smith's laptop have been identified and how they were concealed. The technical report will continue to be updated with these findings, emphasizing the importance of this goal in the overall context of the forensic investigation. Further details regarding the analysis process and the techniques employed can be found in the references section, providing transparency, and allowing for the reproducibility of the results.
+
+\section{Investigation into Hidden Recipes}
+The investigation into Taurus Smith's USB drive has revealed a series of recipes that were concealed using various data-hiding techniques. Each discovery contributes to the hypothesis that Taurus Smith has been engaged in the unauthorized acquisition and potential dissemination of Lard\&land Donuts' proprietary recipes.
+
+\subsection{Document Analysis for Recipe Content}
+A thorough examination of the files stored on the USB drive uncovered a series of documents that appeared to be benign but upon further inspection, were found to contain hidden content:
+
+\begin{enumerate}
+    \item \textbf{Bean.png \& coconuts.png:} These image files, initially discovered during the review of steganographic methods in Section 7.2, were found to contain embedded text. Steganalysis tools revealed the text to be recipes, which were extracted and documented.
+    
+    \item \textbf{Lard Land PDF:} Detailed in Section 7.3, this encrypted PDF required decryption to access its contents. Once decrypted, it was found to contain a detailed recipe that matches the description of Lard\&land Donuts' secret offerings.
+    
+    \item \textbf{Unalloc\_8524\_43768320\_1003921408:} Found in the examination of unallocated space in Section 6.2, this data fragment was reconstructed to reveal a recipe that had been deleted, suggesting attempts to conceal this information.
+    
+    \item \textbf{Basic Donuts.doc:} Located through directory traversal at /img\_Taurus Laptop.001/vol\_vol2/Family Photos/My Docs/Basic Donuts.doc, this document was not hidden or encrypted but was buried within a directory that suggested personal photos rather than proprietary information.
+    
+    \item \textbf{PCAP File Recipe Link:} Referenced in Section 8.5.1, analysis of network traffic captured in the PCAP file Exhibit D led to the discovery of a URL. When examined, the link pointed to an online repository of a recipe that aligns with the company's product profile.
+\end{enumerate}
+
+\subsection{Discovery of Data Hiding Techniques}
+In addition to the document analysis, various data-hiding techniques were uncovered:
+
+\begin{enumerate}
+    \item \textbf{Steganography in Images:} The recipes within Bean.png and coconuts.png were hidden using steganographic methods, which required specialized software to reveal.
+    
+    \item \textbf{Encryption:} The Lard Land PDF was protected by encryption, which was circumvented using John the Ripper, revealing the hidden recipe.
+    
+    \item \textbf{Deleted File Recovery:} Unalloc\_8524\_43768320\_1003921408 represents a recipe that was discovered in the unallocated space, indicating it had been deleted in an attempt to hide it.
+    
+    \item \textbf{Misleading Directory Placement:} The Basic Donuts.doc file was strategically placed in a misleading directory path, diverting attention from its actual content.
+    
+    \item \textbf{Hidden Messages in Document Properties:} The most significant discovery was in the file dad.xls, located at /img\_Taurus Laptop.001/vol\_vol2/Family Photos/My Docs/dad.xls. An analysis of the hex values within the file uncovered a message ("Dad. Just a little reminder. The secret lies in the Special Pink Donut...Love you lots. Lisa.....") hinting at the 'Special Pink Donut'. This message was embedded in such a way that it would not be apparent to a casual observer and required a hex analysis to uncover. Although the recipe itself was not found, the message implies its significant value and potential as a clue to the whereabouts or the method of concealing the 'Honey Duff Recipe'.
+\end{enumerate}
+
+The evidence of these hiding techniques not only demonstrates the intent to conceal but also suggests a level of sophistication in the methods employed to protect the proprietary information.
+
+\section{Network Activity Analysis}
+
+\subsection{Packet Capture Analysis}
+Analysed via Wireshark (for Exhibits D \& E) and a manual, visual inspection of Exhibits B \& C, key information retrieved from examinations are as follows:
+
+\textbf{Exhibit B Examination}\\
+\textbf{TCP Three-Way Handshake:} The captured packets between timestamps 8.810469 and 9.912007 showcase the TCP three-way handshake, a fundamental process in establishing a TCP/IP network session. This handshake was conducted between the IP addresses 192.168.1.157 and 192.168.1.137, indicating the initiation of a communication session.
+
+\textbf{TCP Data Transfer and SSL Protocol:} Notably, at timestamp 11.911114, a TCP data transfer initiated by 192.168.1.157 is observed, with the [PSH, ACK] flags set. This suggests an urgent push of the data to the receiving end. This segment's data is encapsulated within the Secure Sockets Layer (SSL), as evidenced by the packet length and the SSL protocol annotation, indicating encrypted content being transmitted, a common practice for secure communication.
+
+\textbf{TCP Dup ACKs and Fast Retransmission:} The presence of Duplicate ACKs and a Fast Retransmission between timestamps 11.911019 and 11.911111 implies packet loss and a robust TCP error recovery mechanism in action. Such behaviour is typical in TCP communications to ensure data integrity.
+
+\textbf{Potential Secure Data Transfer:} The content of the SSL-encapsulated data is not visible due to encryption. However, the transmission's secure nature, coupled with the protocol used, suggests the exchange of sensitive information, which could be of interest in a security investigation context.
+
+\textbf{Exhibit B Chat Script and Implications}\\
+\textbf{Script Of Messages:}\\
+Message 1 (Time 11.911114) Source (192.168.1.157): Initiation of an encrypted data transfer, indicating the movement of information that requires confidentiality.
+
+\textbf{Implications:}\\
+The secure nature of the message from Exhibit B, sent from IP address 192.168.1.157, suggests the transmission of potentially sensitive or confidential information. The SSL protocol ensures that the data is encrypted, protecting it from unauthorized access during transit. This level of security is often employed in scenarios where data privacy and integrity are of utmost concern.
+
+The TCP [PSH, ACK] flags highlight the urgency of the data transfer, prompting the receiver to process the received information immediately. This could denote an important and time-sensitive communication between the parties involved.
+
+The occurrence of Duplicate ACKs and Fast Retransmission is indicative of a reliable transmission process, where the network protocol swiftly responds to correct any detected anomalies, such as packet loss. This mechanism is critical to maintaining the integrity of the data being transferred, ensuring the recipient receives a complete and accurate dataset.
+
+In the context of cybersecurity, the encrypted data transfer raises questions about the nature of the information being sent and the identities of the communicating parties. It is crucial in a security investigation to establish the context of such transmission and determine whether it aligns with expected network behaviour or indicates an anomalous or unauthorized activity.
+
+\textbf{TCP Acknowledgment:} The acknowledgement of the data reception by host 192.168.1.137 is confirmed through the subsequent TCP packets, signifying the successful decryption and processing of the transmitted data.
+
+\textbf{Observations of Network Activity:} The session involves standard network communication protocols and exhibits behaviours characteristic of established encrypted data transfer methods. The involvement of the SSL protocol specifically highlights a concern for data security and confidentiality.
+
+\textbf{Exhibit D Examination}\\
+\textbf{ICMP Echo Requests and Replies:} The ICMP echo requests and replies, with timestamps ranging from 0.000000 to 2.012274, provided evidence of ongoing connectivity testing between 192.168.1.158 and 192.168.1.43. Incrementing sequence numbers for these messages indicated a series of standard network pings to maintain or check connectivity.
+
+\textbf{ARP Communication:} ARP requests and replies were observed between timestamps 5.050592 and 5.208881, to resolve the network layer addresses to link layer addresses. This exchange is standard for the establishment of communication within a local network, confirming the hardware addresses of the devices involved.
+
+\textbf{TCP Three-Way Handshake:} A critical aspect of the communication, the TCP three-way handshake, was captured between timestamps 6.469619 and 6.470557. This process established a secure and reliable channel for data transfer on port 1234 between Taurus Smith's computer and host 192.168.1.43.
+
+\textbf{TCP Data Transfer:} At timestamp 6.470691, Taurus Smith's computer initiated a significant TCP data transfer. A segment consisting of 4538 bytes was transmitted to 192.168.1.43, marked with the [PSH, ACK] flags, signalling the receiver to process the data immediately. The content of this transfer, upon scrutiny, contained what appears to be a detailed recipe, notably including a list of ingredients, precise cooking instructions, and URLs pointing to external information sources. This data is of acute interest given the ongoing investigation, as it corresponds to the suspected transmission of the proprietary 'Honey Duff Donuts' recipe owned by Lard\&land Donuts.
+
+\textbf{Exhibit D Chat Script and Implications}\\
+\textbf{Script Of Messages:}\\
+Message 1 (Time 6.470691)
+\begin{itemize}
+    \item Source (192.168.1.158): Transmission of data containing a detailed recipe, including ingredients, preparation methods, and URLs linking to external culinary resources.
+\end{itemize}
+
+\textbf{Exhibit D Implications:}\\
+The content of the message from Exhibit D, sent from IP address 192.168.1.158, carries significant implications in the context of the investigation. The data packet includes a comprehensive recipe for doughnuts, which aligns with the scenario of Taurus Smith (Mona Simpson) being suspected of unauthorized transmission of Lard\&land Donuts' proprietary 'Honey Duff Donuts' recipe.
+
+The inclusion of URLs within the message suggests an attempt to provide comprehensive information about the recipe, potentially indicating a source of origin for the recipe or a method for sharing additional information. This could be interpreted as an effort to ensure the recipient has full access to all necessary information, which is crucial in replicating the doughnut recipe accurately.
+
+The technical aspect of this transmission, involving a significant data packet sent over a TCP connection, suggests a deliberate and premeditated act of sharing proprietary information. The use of a TCP connection for the transfer indicates a methodical approach, likely chosen for its reliability and ability to transfer large amounts of data securely.
+
+In the broader context of the investigation, this message supports the theory that Taurus Smith was actively involved in sharing confidential corporate information. The detailed nature of the recipe, combined with the method of transmission, points to a clear intent to disseminate proprietary information to an unauthorized external party, potentially constituting a serious breach of corporate trust and legal boundaries.
+
+\textbf{TCP Acknowledgment:} The reception of the data was confirmed by host 192.168.1.43 with an acknowledgement packet at timestamp 6.471206, attesting to the successful transmission of the data packet and its contents.
+
+\textbf{TCP Connection Termination:} The network session concluded with a sequence of packets indicating the termination of the TCP connection. Starting at timestamp 12.498008 and concluding at 12.500094, these packets marked the orderly end of the data exchange.
+
+Throughout the assessment, particular attention was paid to the aliases used by Taurus Smith, also known as Mona Simpson, and the relevance of the known IP addresses and MAC addresses. Taurus Smith's computer was consistently identified by the IP address 192.168.1.158 and the MAC address HewlettPacka\_45:a4:bb, while the recipient, host 192.168.1.43, has been linked to a VMware virtual machine with the MAC address VMware\_b0:8d:62. The usage of a virtual machine could be a tactic to obfuscate the true destination of the data or to utilise additional layers of anonymity.
+
+\textbf{Exhibit E Examination}\\
+Upon reviewing the contents of Exhibit E, the following technical analysis and script of messages provide a continuation of the network activity assessment:
+
+\textbf{Exhibit E Technical Analysis:}\\
+\textbf{TCP Communication:} Initial TCP three-way handshake is observed between the source 192.168.1.158 and the destination 192.168.1.43, starting with a SYN packet at time 0.000000. The handshake is completed with a SYN-ACK and an ACK, indicating the establishment of a TCP session.
+
+\textbf{ARP Requests and Replies:} Multiple ARP broadcasts are observed, with the source requesting the MAC address for the destination IP. Replies provide the requested MAC address, facilitating communication over the network.
+
+\textbf{Significant TCP Data Transfer:} Two notable TCP data transfers occur at times 15.101793 and 44.945568. In the first instance, the source sends a message indicating the transmission of files. In the second, the message includes references to 'steged' data and 'secure ways/channels,' suggesting the use of steganography and secure data transmission methods.
+
+\textbf{ICMP Echo Requests and Replies:} A series of ICMP echo requests and replies are exchanged between the two hosts, indicating ongoing communication and network connectivity.
+
+\textbf{Exhibit E Script of Messages:}\\
+Message 1 (Time 15.101793) Source (192.168.1.158): "I have sent you a few files."\\
+Message 2 (Time 44.945568) Source (192.168.1.158): "Using different ways, some of them are steged and some of them used secure ways/channel."\\
+Message 3 (Time 63.820019) Destination (192.168.1.43): "Thanks."
+
+\textbf{Exhibit E Implications of Messages:}\\
+The first message implies the initiation of file transfer, which is common in data exfiltration scenarios. The second message is particularly incriminating as it explicitly mentions the use of steganography—concealing data within other non-secret data, which is a method often employed to bypass security monitoring—and secure channels, which could be encrypted communications designed to prevent interception and ensure confidentiality.
+
+The use of such techniques aligns with Taurus Smith (Mona Simpson) potentially transmitting sensitive corporate information, such as the 'Honey Duff Donuts' recipe. The acknowledgement with a simple "Thanks" could imply successful receipt of the transmitted data.
+
+The technical analysis and message content, when combined with the known network identifiers (IP and MAC addresses) and the contextual backdrop of Taurus Smith's alleged activities, provide substantial insights into the methods used for the suspected unauthorized data transfer. This evidence could be critical in forming the narrative of how Taurus Smith may have conducted the alleged corporate espionage.

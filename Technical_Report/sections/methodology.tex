@@ -1,0 +1,51 @@
+\chapter{Methodology}
+
+\section{Evidence Acquisition}
+
+\subsection{Secure Handling and Transfer}
+The acquisition of digital evidence commenced with the careful handling of the physical media to ensure no alteration or damage occurred. The USB flash drive was received in a sealed anti-static bag, labelled with the chain of custody form attached. The evidence was transferred to a write-protected state using a hardware write-blocker to prevent any data modification during the imaging process.
+
+\subsection{Imaging Process and Documentation}
+The image of Taurus Smith's laptop contained on the USB flash drive was created using FTK Imager to produce an exact bit-for-bit copy of the original data. The imaging process was rigorously documented, detailing every step from the initialization of the imaging procedure to its successful completion. Metadata, such as the model and a serial number of the USB flash drive, was recorded.
+
+\subsection{Integrity Verification and Hash Calculation}
+Post-acquisition, the integrity of the digital evidence was verified through hash calculation. An MD5 hash value of 56aeba1a708c5210c8728e5a2560f9ca was computed for the image and matched against the original media to ensure the image was a replica without any alteration. This hash value will be documented for future verification.
+
+\section{Evidence Examination}
+
+\subsection{Preliminary File System Analysis}
+Using Autopsy, an initial file system analysis was conducted to establish an overview of the data structure. This step included identifying the file system type, reviewing the partition structure, and cataloguing the system metadata such as file and directory listings.
+
+\subsection{Detailed File Examination Procedures}
+A more detailed file examination followed, employing both Autopsy and FTK Imager for a granular inspection. This procedure involved analyzing file signatures, scrutinizing slack space, and assessing file metadata for anomalies. Particular attention was given to system and application logs, user profiles, and the Windows registry, which was analyzed for evidence of installed software, USB device history, and other user activities.
+
+\section{Artifact and Evidence Recovery}
+
+\subsection{Recovery of Deleted Data}
+The recovery of deleted data was prioritized to uncover any potential efforts to conceal activities. Techniques such as file carving and slack space analysis were employed from Autopsy's preinstalled Data Carving Module \& and File Discover Module to automate the search for known file headers and footers, facilitating the reconstruction of deleted files.
+
+\subsection{Uncovering Hidden and Obfuscated Data}
+To uncover hidden or obfuscated data, a multi-faceted approach was taken. This included analysing file and folder paths for steganographic concealment, reviewing file extensions, and examining file content for mismatches. Additionally, the binary data of the disk image was scanned for embedded or encrypted data that could be indicative of attempts to hide information. This hidden and obfuscated information can be further accessed in section 7.3
+
+\section{Analysis}
+
+\subsection{Correlation and Content Analysis}
+Data correlation involved cross-referencing file timestamps, user activities, and log entries to construct a coherent sequence of events. Content analysis included a thorough examination of documents, images, and multimedia files to extract potential evidence. A keyword search using a "dirty word list" — a compilation of terms related to the investigation — was conducted across the dataset, this included keywords related to doughnuts such as ingredients (flour, sugar, etc).
+
+\subsection{Network Activity Assessment}
+Network activity was meticulously assessed utilizing packet capture (pcap) files, with a particular focus on Exhibit D, collected during the timeframe of suspected illicit activities. Analysis tools such as Wireshark were deployed to scrutinize these files, enabling the identification of the devices engaged in communication and the reconstruction of the session content. Emphasis was placed on scrutinizing data packets emanating from or targeting Taurus Smith's computer, identified by the IP address 192.168.1.158 and associated with the MAC address HewlettPacka\_45:a4:bb.
+
+
+\section{Reporting}
+The reporting phase is critical in digital forensic investigations, requiring precision and adherence to legal standards.
+
+\subsection{Structured Reporting}
+A structured reporting process was established to ensure all findings were methodically documented. This includes the preparation of a detailed technical report with clear headings, subheadings, and where appropriate, appendices for supplementary information. All reports include an executive summary, a detailed account of methodologies employed, the findings, and a conclusion with recommendations.
+
+\subsection{Ensuring Clarity and Reproducibility}
+To guarantee clarity, all technical terminologies were defined, and complex forensic processes were explained in a manner understandable to non-technical stakeholders. Reproducibility was ensured by providing comprehensive details of each step taken during the investigation, allowing for independent verification. Every action was timestamped and logged, and screenshots of critical findings were included to support the written narrative.
+
+\subsection{Chain of Custody Maintenance}
+Maintaining the chain of custody was paramount throughout the investigation. Documentation began the moment evidence was received, logging every interaction with the evidence. All digital evidence was hashed, with the hash values recorded at each stage to show that the evidence remained unchanged from acquisition to reporting.
+
+This comprehensive methodology, combining rigorous technical processes with thorough documentation and reporting, ensures the highest level of integrity and reliability of the investigation's findings. Each step was meticulously planned and executed to withstand scrutiny and fulfil the rigorous requirements of forensic analysis in the context of legal proceedings.

@@ -1,0 +1,53 @@
+\documentclass[12pt,a4paper]{report}
+
+% Import custom styles
+\input{styles/custom.sty}
+\input{styles/formatting.sty}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    {\LARGE \textbf{Technical Report} \par}
+    \vspace{1.5cm}
+    {\huge \textbf{Forensic Analysis of USB Flash Drive Image in the Case of Taurus Smith} \par}
+    \vspace{2cm}
+    {\Large Module Code: CMT216 \par}
+    \vspace{0.5cm}
+    {\Large Module Title: Computer and Network Forensics \par}
+    \vspace{0.5cm}
+    {\Large Lecturer: Shancang Li \par}
+    \vspace{0.5cm}
+    {\Large Assessment Title:  Computer and Network Forensics Coursework \par}
+    \vspace{0.5cm}
+    {\Large Assessment Number: 1 \par}
+    \vspace{2cm}
+    {\Large Forensic Analyst: Iolo Evans Jones \par}
+    \vspace{0.5cm}
+    {\Large Student Number: 21089522 \par}
+    \vfill
+    {\large \today \par}
+\end{titlepage}
+
+% Table of contents
+\tableofcontents
+\clearpage
+
+% Include sections
+\input{sections/executive-summary.tex}
+\input{sections/introduction.tex}
+\input{sections/chain-of-custody.tex}
+\input{sections/methodology.tex}
+\input{sections/case-background.tex}
+\input{sections/evidence-acquisition.tex}
+\input{sections/evidence-examination.tex}
+\input{sections/artifact-recovery.tex}
+\input{sections/detailed-analysis.tex}
+\input{sections/findings.tex}
+\input{sections/conclusion.tex}
+\input{sections/glossary.tex}
+\input{sections/references.tex}
+
+\end{document}
