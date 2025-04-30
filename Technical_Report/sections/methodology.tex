@@ -1,51 +1,233 @@
 \chapter{Methodology}
 
-\section{Evidence Acquisition}
+\section{Forensic Investigation Framework}
+This investigation follows the ACPO (Association of Chief Police Officers) Guidelines for Digital Evidence, complemented by NIST SP 800-86 recommendations for computer forensic examinations. This integrated framework ensures both procedural validity and scientific rigor, addressing the unique challenges presented by multi-source digital evidence analysis in potential corporate espionage cases.
 
-\subsection{Secure Handling and Transfer}
-The acquisition of digital evidence commenced with the careful handling of the physical media to ensure no alteration or damage occurred. The USB flash drive was received in a sealed anti-static bag, labelled with the chain of custody form attached. The evidence was transferred to a write-protected state using a hardware write-blocker to prevent any data modification during the imaging process.
+\section{Evidence Acquisition and Preservation}
 
-\subsection{Imaging Process and Documentation}
-The image of Taurus Smith's laptop contained on the USB flash drive was created using FTK Imager to produce an exact bit-for-bit copy of the original data. The imaging process was rigorously documented, detailing every step from the initialization of the imaging procedure to its successful completion. Metadata, such as the model and a serial number of the USB flash drive, was recorded.
+\subsection{Digital Evidence Handling Protocol}
+The acquisition phase commenced with strict adherence to forensic best practices for physical and digital evidence handling. The USB storage device containing the laptop image was processed in a controlled environment with electrostatic discharge protection measures in place. All evidence handling occurred in a designated forensic workstation isolated from network connectivity to prevent cross-contamination or inadvertent modification of evidentiary data.
 
-\subsection{Integrity Verification and Hash Calculation}
-Post-acquisition, the integrity of the digital evidence was verified through hash calculation. An MD5 hash value of 56aeba1a708c5210c8728e5a2560f9ca was computed for the image and matched against the original media to ensure the image was a replica without any alteration. This hash value will be documented for future verification.
+To maintain evidential integrity, the following protocols were implemented:
+\begin{itemize}
+    \item Environmental controls including temperature and humidity monitoring
+    \item Use of anti-static workstations and grounding equipment
+    \item Photographic documentation of physical media condition prior to processing
+    \item Isolation from electromagnetic interference sources
+\end{itemize}
 
-\section{Evidence Examination}
+\subsection{Forensic Imaging Methodology}
+The forensic imaging process employed multiple validation techniques to ensure data fidelity. The examination utilized a Tableau T35u write-blocker configured with USB 3.0 connectivity to create an acquisition environment where source media remained unaltered throughout the process. AccessData FTK Imager (version 4.5.0.3) was employed to create an E01 format forensic image, utilizing the following parameters:
+\begin{itemize}
+    \item Compression: 4 (optimal balance between size and processing time)
+    \item Sector count verification during image creation
+    \item Configurable read retries for damaged sectors: 5 attempts
+    \item Evidence file segmentation: 2GB (optimized for storage and verification)
+\end{itemize}
 
-\subsection{Preliminary File System Analysis}
-Using Autopsy, an initial file system analysis was conducted to establish an overview of the data structure. This step included identifying the file system type, reviewing the partition structure, and cataloguing the system metadata such as file and directory listings.
+Contemporaneous documentation was maintained throughout the acquisition process, recording start and end times, any anomalies encountered, and system configuration parameters.
 
-\subsection{Detailed File Examination Procedures}
-A more detailed file examination followed, employing both Autopsy and FTK Imager for a granular inspection. This procedure involved analyzing file signatures, scrutinizing slack space, and assessing file metadata for anomalies. Particular attention was given to system and application logs, user profiles, and the Windows registry, which was analyzed for evidence of installed software, USB device history, and other user activities.
+\subsection{Digital Evidence Authentication}
+Authentication of the acquired evidence employed a multi-hash verification methodology. The following cryptographic hash algorithms were applied to the evidentiary data:
 
-\section{Artifact and Evidence Recovery}
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{3cm}|p{8cm}|p{4cm}|}
+\hline
+\textbf{Hash Algorithm} & \textbf{Hash Value} & \textbf{Verification Status} \\
+\hline
+MD5 & 56aeba1a708c5210c8728e5a2560f9ca  & Verified \\
+\hline
+SHA-1 & 3b023acd0e09d7db8bf5d1df725135a5f3bfc481 & Verified \\
+\hline
+SHA-256 & a2f49fa7ce6b111c6e198de2ca4a24a8e73d6d85291805db5bede4d60fab23be  & Verified \\
+\hline
+\end{tabular}
+\caption{Hash Verification Results}
+\label{tab:hash_verification}
+\end{table}
 
-\subsection{Recovery of Deleted Data}
-The recovery of deleted data was prioritized to uncover any potential efforts to conceal activities. Techniques such as file carving and slack space analysis were employed from Autopsy's preinstalled Data Carving Module \& and File Discover Module to automate the search for known file headers and footers, facilitating the reconstruction of deleted files.
+Multiple hash algorithms provide enhanced authentication assurance, as the probability of hash collisions across different algorithms approaches zero, thereby ensuring that the evidentiary image remains unaltered throughout the analytical process.
 
-\subsection{Uncovering Hidden and Obfuscated Data}
-To uncover hidden or obfuscated data, a multi-faceted approach was taken. This included analysing file and folder paths for steganographic concealment, reviewing file extensions, and examining file content for mismatches. Additionally, the binary data of the disk image was scanned for embedded or encrypted data that could be indicative of attempts to hide information. This hidden and obfuscated information can be further accessed in section 7.3
+\section{Forensic Analysis Strategy}
 
-\section{Analysis}
+\subsection{Modular Examination Framework}
+The investigation implemented a systematic modular examination approach through Autopsy (version 4.22.1 for Windows), leveraging multiple specialized analytical modules to achieve comprehensive evidence processing:
 
-\subsection{Correlation and Content Analysis}
-Data correlation involved cross-referencing file timestamps, user activities, and log entries to construct a coherent sequence of events. Content analysis included a thorough examination of documents, images, and multimedia files to extract potential evidence. A keyword search using a "dirty word list" — a compilation of terms related to the investigation — was conducted across the dataset, this included keywords related to doughnuts such as ingredients (flour, sugar, etc).
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{5cm}|p{10cm}|}
+\hline
+\textbf{Module Category} & \textbf{Implemented Modules} \\
+\hline
+\textbf{File System Analysis} & 
+\begin{itemize}
+    \item File Type Identification
+    \item Extension Mismatch Detector
+    \item Interesting Files Identifier
+    \item Data Source Integrity
+\end{itemize} \\
+\hline
+\textbf{Content Analysis} & 
+\begin{itemize}
+    \item Keyword Search
+    \item Picture Analyzer
+    \item Email Parser
+    \item Embedded File Extractor
+    \item GPX Parser
+    \item YARA Analyzer
+\end{itemize} \\
+\hline
+\textbf{Activity Analysis} & 
+\begin{itemize}
+    \item Recent Activity
+    \item Central Repository
+\end{itemize} \\
+\hline
+\textbf{Specialized Analysis} & 
+\begin{itemize}
+    \item Encryption Detection
+    \item PhotoRec Carver
+    \item Virtual Machine Extractor
+    \item Android Analyzer (aLEAPP)
+    \item iOS Analyzer (iLEAPP)
+\end{itemize} \\
+\hline
+\textbf{Verification} & 
+\begin{itemize}
+    \item Hash Lookup
+    \item Data Source Integrity
+\end{itemize} \\
+\hline
+\end{tabular}
+\caption{Autopsy Modules Deployed for Forensic Examination}
+\label{tab:autopsy_modules}
+\end{table}
 
-\subsection{Network Activity Assessment}
-Network activity was meticulously assessed utilizing packet capture (pcap) files, with a particular focus on Exhibit D, collected during the timeframe of suspected illicit activities. Analysis tools such as Wireshark were deployed to scrutinize these files, enabling the identification of the devices engaged in communication and the reconstruction of the session content. Emphasis was placed on scrutinizing data packets emanating from or targeting Taurus Smith's computer, identified by the IP address 192.168.1.158 and associated with the MAC address HewlettPacka\_45:a4:bb.
+This modular approach allowed for targeted analysis of specific evidentiary aspects while maintaining a cohesive investigative framework. The implementation followed a logical progression from file system integrity verification to specialized content analysis.
+
+\subsection{Advanced Configuration Parameters}
+Key modules were configured with specialized parameters to optimize detection capabilities:
+
+\subsubsection{Encryption Detection Module Configuration}
+The Encryption Detection module was configured with specific parameters calibrated for optimal identification of potentially encrypted content:
+\begin{itemize}
+    \item Minimum entropy threshold: 7.5 (balanced to detect encrypted content while minimizing false positives)
+    \item Minimum file size: 5MB (filtered to focus on substantive encrypted containers)
+    \item Enhanced detection options enabled:
+    \begin{itemize}
+        \item Consideration of files with sizes that are multiples of 512 bytes (common encryption block size)
+        \item Inclusion of slack space in analytical scope for detection of partially overwritten encrypted data
+    \end{itemize}
+\end{itemize}
 
 
-\section{Reporting}
-The reporting phase is critical in digital forensic investigations, requiring precision and adherence to legal standards.
+\subsection{Advanced Data Recovery Techniques}
+To recover potentially deleted or concealed data, the following specialized recovery techniques were employed:
 
-\subsection{Structured Reporting}
-A structured reporting process was established to ensure all findings were methodically documented. This includes the preparation of a detailed technical report with clear headings, subheadings, and where appropriate, appendices for supplementary information. All reports include an executive summary, a detailed account of methodologies employed, the findings, and a conclusion with recommendations.
+\subsubsection{Deleted File Recovery}
+PhotoRec (version 7.2) was used in conjunction with Autopsy's built-in file recovery capabilities to reconstruct deleted files. The recovery process focused on:
+\begin{itemize}
+    \item Data carving based on file signatures across unallocated space
+    \item Partial file recovery from slack space
+    \item Identification of file fragments in volume unallocated space
+    \item Reconstruction of fragmented files through sequential block analysis
+\end{itemize}
 
-\subsection{Ensuring Clarity and Reproducibility}
-To guarantee clarity, all technical terminologies were defined, and complex forensic processes were explained in a manner understandable to non-technical stakeholders. Reproducibility was ensured by providing comprehensive details of each step taken during the investigation, allowing for independent verification. Every action was timestamped and logged, and screenshots of critical findings were included to support the written narrative.
+\subsubsection{Anti-Forensic Countermeasure Analysis}
+The investigation incorporated specific techniques through Autopsy modules to counter potential anti-forensic methods:
+\begin{itemize}
+    \item Picture Analyzer module for detection of steganographic content through statistical and visual analysis
+    \item Extension Mismatch Detector for identification of files with mismatched headers and extensions
+    \item YARA Analyzer applying custom rules optimized for detecting obfuscated content
+    \item Embedded File Extractor for recovery of documents and artifacts concealed within container files
+    \item Keyword Search with specialized dictionaries targeting anti-forensic techniques and tools
+    \item Combined analysis of file content and metadata to detect inconsistencies indicative of tampering
+\end{itemize}
 
-\subsection{Chain of Custody Maintenance}
-Maintaining the chain of custody was paramount throughout the investigation. Documentation began the moment evidence was received, logging every interaction with the evidence. All digital evidence was hashed, with the hash values recorded at each stage to show that the evidence remained unchanged from acquisition to reporting.
+\subsubsection{NTUSER.DAT Registry Analysis}
+Specialized registry analysis was performed on the NTUSER.DAT file using Registry Explorer (version 1.6.0) and RegRipper (version 3.0) to extract:
+\begin{itemize}
+    \item User search history patterns
+    \item Application execution frequency metrics, with specific focus on Excel.exe usage
+    \item Most recent typed URLs in browser address bars
+    \item UserAssist records for application usage analysis
+    \item Recently accessed documents and their timestamps
+\end{itemize}
 
-This comprehensive methodology, combining rigorous technical processes with thorough documentation and reporting, ensures the highest level of integrity and reliability of the investigation's findings. Each step was meticulously planned and executed to withstand scrutiny and fulfil the rigorous requirements of forensic analysis in the context of legal proceedings.
+\section{Network Forensics Methodology}
+
+\subsection{Network Communication Analysis}
+The examination of network communications employed a structured protocol-based analytical framework:
+\begin{enumerate}
+    \item \textbf{Packet Capture Processing}
+    \begin{itemize}
+        \item Wireshark (version 3.6.2) was utilized for PCAP file analysis
+        \item TCP/IP conversation reconstruction and flow analysis
+        \item Protocol dissection with custom display filters
+        \item Statistical anomaly detection for communication patterns
+    \end{itemize}
+    
+    \item \textbf{Network Session Correlation}
+    \begin{itemize}
+        \item Correlation of network timestamps with host-based artifacts
+        \item IP address and MAC address attribution analysis
+        \item Behavioral analysis of communication patterns
+        \item Port usage profiling and service identification
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Data Exfiltration Analysis}
+Specific attention was directed to identifying potential data exfiltration indicators:
+\begin{itemize}
+    \item Identification of large data transfers or anomalous traffic patterns
+    \item Analysis of encrypted communications (SSL/TLS sessions)
+    \item Examination of DNS queries for potential command and control or data staging
+    \item Investigation of non-standard protocol usage on standard ports
+    \item Analysis of temporal patterns in network communications
+\end{itemize}
+
+\section{Analysis Integration and Synthesis}
+
+\subsection{Cross-Artifact Correlation}
+To establish a comprehensive understanding of the case, multiple correlation methodologies were employed:
+\begin{itemize}
+    \item Temporal correlation matrix linking file system activities with network events
+    \item Entity relationship mapping between user accounts, files, and network communications
+    \item Behavioral pattern analysis across different evidence sources
+    \item Statistical correlation of observed activity patterns with baseline usage profiles
+\end{itemize}
+
+\subsection{Content-Based Analysis}
+Specialized content analysis techniques were applied to identify case-relevant information:
+\begin{itemize}
+    \item Keyword search utilizing domain-specific terminology related to culinary processes and ingredients
+    \item Context-based search expanding beyond simple keyword matching
+    \item Named entity recognition for identification of persons, places, and organizations
+    \item Semantic relationship mapping between key terms and concepts
+    \item Contextual analysis of communications for intent and relationship determination
+\end{itemize}
+
+\section{Investigative Documentation}
+
+\subsection{Scientific Documentation Protocols}
+All investigative activities were documented according to scientific and legal requirements:
+\begin{itemize}
+    \item Contemporaneous note-taking throughout the investigative process
+    \item Screen capture documentation with timestamp overlay
+    \item Tool configuration logging with version control information
+    \item Error and anomaly reporting with resolution documentation
+    \item Step-by-step procedural documentation enabling process reproduction
+\end{itemize}
+
+\subsection{Chain of Custody Management}
+Chain of custody was maintained through a comprehensive digital evidence management system:
+\begin{itemize}
+    \item Cryptographic validation at each evidence transfer point
+    \item Detailed logging of all access to evidentiary materials
+    \item Secure storage with physical access controls
+    \item Environmental condition monitoring for evidence storage
+    \item Tamper-evident sealing for physical media
+\end{itemize}
+
+This rigorous methodological framework ensures not only the scientific validity of the findings but also their admissibility in potential legal proceedings. Each technique was selected based on its scientific acceptance within the digital forensics community and its appropriateness for the specific evidential challenges presented by this case.

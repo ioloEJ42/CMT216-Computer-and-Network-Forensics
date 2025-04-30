@@ -1,22 +1,66 @@
 \chapter{Introduction}
 
 \section{Purpose and Scope of the Investigation}
-This investigation aims to conduct a thorough forensic analysis of digital evidence associated with the suspect, Taurus Smith, alias Mrs. Mona Simpson. The inquiry aims to uncover any digital traces that support the suspicion of illegal activity, specifically the potential leakage of proprietary recipes from Lard\&land Donuts to a competitor. The scope encompasses the examination of a USB flash drive image and any recoverable data from a liquid-damaged mobile phone (Exhibit A), while also considering network activity that may link Taurus Smith to her accomplice(s) and outline her travel intentions.
+This technical investigation centers on conducting a comprehensive digital forensic analysis of evidence connected to the case of Taurus Smith (alias Mrs. Mona Simpson). The primary objective is to establish a scientific foundation for determining whether corporate espionage has occurred, specifically regarding the alleged theft and potential transmission of proprietary recipes from Lard\&land Donuts to market competitors. The investigation's scope encompasses multiple dimensions of digital evidence, including:
+
+\begin{itemize}
+    \item Forensic analysis of a USB flash drive image containing critical operational data
+    \item Evaluation of network communications through packet capture analysis
+    \item Examination of registry artifacts from connected systems
+    \item Recovery techniques for potentially obfuscated or intentionally concealed digital evidence
+\end{itemize}
+
+Additionally, the investigation aims to establish connections between the digital evidence and physical context, particularly regarding travel arrangements and interpersonal communications that may reveal co-conspirators or accomplices in the suspected information theft.
 
 \section{Background of the Case}
-Taurus Smith, an employee at Lard\&land Donuts, is suspected of being a secret agent for their competitor, Diggity Doughnuts, and having unauthorised access to the company's secret recipe for 'Honey Duff Donuts'. An incident involving an unrecognized laptop connecting to the company's wireless network, followed by instant message exchanges with Taurus Smith's computer, raised suspicions of a computer misuse attack. This led to the involvement of local police, who found a USB stick and a liquid-damaged mobile phone at the last known address of the alias, Mrs Mona Simpson.
+The case originated when security personnel at Lard\&land Donuts detected an unauthorized device establishing connectivity to their wireless network infrastructure. This security breach coincided with unusual network traffic patterns originating from the workstation assigned to Taurus Smith, an employee with authorized access to sensitive intellectual property, including the company's flagship product formula for 'Honey Duff Donuts'.
+
+Network logs indicated that immediately following the connection of the unidentified device, a series of instant message exchanges occurred between this unknown system and Smith's workstation. The timing, volume, and pattern of these communications raised concerns about potential intellectual property exfiltration, prompting internal security protocols to be activated.
+
+Subsequent investigation revealed that Smith may have been operating under the alias Mrs. Mona Simpson. This led law enforcement to execute a search warrant at 742 Evergreen Terrace, the last registered address associated with this alias. During this operation, investigators secured two key items of digital evidence: a USB storage device and a mobile communication device exhibiting signs of liquid damage (designated as Exhibit A). Initial triage indicated that the USB device contained an image of a laptop hard drive, potentially holding substantial evidentiary value relating to the suspected corporate espionage activities.
 
 \section{Overview of Methodology}
-The methodology adheres to digital forensics' best practices and the methodology covered in the CM3111 Forensics coursework. It includes secure evidence acquisition, integrity verification, thorough examination using forensic tools like Autopsy, and detailed analysis of findings. Special attention is given to uncovering deleted, hidden, or obfuscated data, user account analysis, network traffic examination, and correlating findings with the case's context.
+The investigation employs a multi-phase digital forensic methodology that adheres to established scientific principles and legal requirements for evidence handling. This approach ensures findings remain admissible in potential legal proceedings while maintaining the highest standards of technical integrity. The methodology incorporates:
+
+\begin{enumerate}
+    \item \textbf{Evidence Preservation and Handling}: Implementation of write-blocking mechanisms during acquisition, maintenance of comprehensive chain of custody documentation, and hash verification to ensure evidence integrity throughout the investigative process.
+    
+    \item \textbf{Multi-layered Analysis Approach}: Application of both automated and manual examination techniques to identify standard and non-standard data artifacts, including:
+    \begin{itemize}
+        \item File system structural analysis to identify logical organization and anomalies
+        \item Metadata examination to establish chronological timelines and attribution
+        \item Content-based analysis to identify relevant information within both active and deleted data segments
+        \item String and pattern matching to identify information of investigative significance
+        \item Registry analysis to uncover system configuration and user activities
+    \end{itemize}
+    
+    \item \textbf{Advanced Recovery Techniques}: Implementation of specialized methodologies to address anti-forensic measures including:
+    \begin{itemize}
+        \item File carving for recovery of deleted or fragmented data
+        \item Steganographic analysis to detect data concealed within seemingly innocuous files
+        \item Encryption identification and potential circumvention strategies
+        \item Timeline correlation to establish relationships between seemingly disparate events
+    \end{itemize}
+    
+    \item \textbf{Network Forensics}: Analysis of packet captures to reconstruct digital communications, including:
+    \begin{itemize}
+        \item TCP/IP session reconstruction
+        \item Protocol-specific analysis
+        \item Identification of data exfiltration patterns
+        \item Attribution of network activities to specific devices and users
+    \end{itemize}
+\end{enumerate}
+
+Throughout the process, all findings are documented with scientific precision, including the specific tools used, their version information, and the parameters under which they were operated, ensuring reproducibility of results by independent examiners.
 
 \section{Objectives and Key Questions}
 The investigation is guided by the following key questions, which aim to unravel the details of the suspected illicit activities:
 \begin{enumerate}
-    \item Is there anyone else implicated? If so, who? Show any evidence sup-porting your findings
-    \item What were Taurus Smith’s travel plans, and do they have any relevance to the alleged illegal activity?
-    \item Can all user accounts on Taurus Smith’s laptop be identified, and what methods were used to conceal them?
-    \item Analyse hidden recipes on the laptop, and what techniques were employed to obscurethem.
-    \item What does the analysis of network activity reveal about the incident, and can it provide a detailed evidence trail?
+    \item Is there anyone else implicated? If so, who? Show any evidence sup-porting your findings.
+    \item Where was Taurus Smith planning to travel to? Show any evidence supporting your findings.
+    \item Please identify as many as the recipes and present all techniques were used to hide it in the provided materials.
+    \item What analyse the network activity involved in this case and present detailed evidence items.
+    \item From the given NTUSER.DAT can you find what did the user search? How many times did the user use EXCEL.exe? What is the latest typed URL?
 \end{enumerate}
 
-The outcomes of this investigation will significantly contribute to the understanding of the case and provide a basis for legal proceedings if necessary. The findings will be meticulously documented in a technical report and a separate court report to ensure clarity and legal admissibility.
+This investigation's results will establish an evidence-based foundation for understanding the scope and methodology of the alleged corporate espionage. The findings will be thoroughly documented according to forensic best practices, ensuring their admissibility and reliability in subsequent legal proceedings. Alongside the technical report detailing the scientific analysis, a court-oriented summary will be prepared that translates complex technical findings into accessible terminology suitable for presentation in legal contexts.
