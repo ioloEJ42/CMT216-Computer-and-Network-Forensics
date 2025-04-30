@@ -32,15 +32,15 @@ Authentication of the acquired evidence employed a multi-hash verification metho
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|p{3cm}|p{8cm}|p{4cm}|}
+\begin{tabular}{|p{3cm}|p{8cm}|p{3cm}|}
 \hline
 \textbf{Hash Algorithm} & \textbf{Hash Value} & \textbf{Verification Status} \\
 \hline
-MD5 & 56aeba1a708c5210c8728e5a2560f9ca  & Verified \\
+MD5 & \raggedright 56aeba1a708c5210c8728e5a2560f9ca  & Verified \\
 \hline
-SHA-1 & 3b023acd0e09d7db8bf5d1df725135a5f3bfc481 & Verified \\
+SHA-1 & \raggedright 3b023acd0e09d7db8bf5d1df725135a5f3bfc481 & Verified \\
 \hline
-SHA-256 & a2f49fa7ce6b111c6e198de2ca4a24a8e73d6d85291805db5bede4d60fab23be  & Verified \\
+SHA-256 & \raggedright a2f49fa7ce6b111c6e198de2ca4a24a8e73d6d85\\291805db5bede4d60fab23be  & Verified \\
 \hline
 \end{tabular}
 \caption{Hash Verification Results}
@@ -82,6 +82,7 @@ The investigation implemented a systematic modular examination approach through 
 \begin{itemize}
     \item Recent Activity
     \item Central Repository
+    \item Targeted Timeline Analysis
 \end{itemize} \\
 \hline
 \textbf{Specialized Analysis} & 
@@ -106,6 +107,24 @@ The investigation implemented a systematic modular examination approach through 
 
 This modular approach allowed for targeted analysis of specific evidentiary aspects while maintaining a cohesive investigative framework. The implementation followed a logical progression from file system integrity verification to specialized content analysis.
 
+\subsection{Resource-Optimized Analysis Approach}
+Due to computational resource constraints typical in academic and resource-limited forensic environments, a selective, focused analytical approach was implemented:
+
+\begin{itemize}
+    \item \textbf{Targeted Timeline Analysis}: Rather than processing the entire evidence corpus with computationally intensive timeline analysis, a selective approach was employed focusing on high-value directories including:
+    \begin{itemize}
+        \item User profile directories
+        \item Document repositories
+        \item System and application logs
+        \item Communication artifacts
+        \item Recently accessed files
+    \end{itemize}
+    This approach delivered analytical depth in critical areas while optimizing processing resources.
+    
+    \item \textbf{Progressive Processing Methodology}: Analysis modules were executed in a staged approach, with each stage informing the focus areas for subsequent analyses. This iterative methodology established a feedback loop where initial findings guided deeper analysis in specific areas of evidential significance.
+\end{itemize}
+
+
 \subsection{Advanced Configuration Parameters}
 Key modules were configured with specialized parameters to optimize detection capabilities:
 
@@ -121,12 +140,11 @@ The Encryption Detection module was configured with specific parameters calibrat
     \end{itemize}
 \end{itemize}
 
-
 \subsection{Advanced Data Recovery Techniques}
 To recover potentially deleted or concealed data, the following specialized recovery techniques were employed:
 
 \subsubsection{Deleted File Recovery}
-PhotoRec (version 7.2) was used in conjunction with Autopsy's built-in file recovery capabilities to reconstruct deleted files. The recovery process focused on:
+PhotoRec Carver module within Autopsy was employed to reconstruct deleted files. The recovery process focused on:
 \begin{itemize}
     \item Data carving based on file signatures across unallocated space
     \item Partial file recovery from slack space
@@ -192,7 +210,7 @@ Specific attention was directed to identifying potential data exfiltration indic
 \subsection{Cross-Artifact Correlation}
 To establish a comprehensive understanding of the case, multiple correlation methodologies were employed:
 \begin{itemize}
-    \item Temporal correlation matrix linking file system activities with network events
+    \item Temporal correlation linking file system activities with network events
     \item Entity relationship mapping between user accounts, files, and network communications
     \item Behavioral pattern analysis across different evidence sources
     \item Statistical correlation of observed activity patterns with baseline usage profiles
