@@ -1,4 +1,4 @@
-\chapter{Advanced Artifact and Evidence Recovery Techniques}
+\chapter{Artifact and Evidence Recovery Techniques}
 
 \section{Steganographic Content Analysis}
 Following the discovery of references to steganography in the recovered email evidence, a comprehensive examination of image files was conducted using specialized steganographic detection and extraction techniques.
@@ -167,7 +167,7 @@ Several encrypted files were identified during the initial examination phase, sp
 Multiple password recovery approaches were employed based on the specific encryption characteristics of each file. John The Ripper was used for both incremental and dictionary-based attacks, running in a dedicated Kali Linux virtual machine within the Forensic Workstation environment. This configuration provided the necessary computational resources and specialized tools for efficient password recovery:
 
 \begin{itemize}
-    \item \textbf{Dictionary-Based Attacks}: Using comprehensive wordlists including the renowned 'rockyou.txt' containing over 14 million common passwords
+    \item \textbf{Dictionary-Based Attacks}: Using comprehensive wordlists including the 'rockyou.txt' containing over 14 million common passwords
     \item \textbf{Hybrid Attacks}: Combining dictionary words with common substitution patterns and appended numbers/special characters
     \item \textbf{Incremental Brute Force}: Systematic testing of character combinations within constrained parameters
     \item \textbf{Context-Specific Wordlists}: Custom dictionaries created from terms found elsewhere in the suspect's files
