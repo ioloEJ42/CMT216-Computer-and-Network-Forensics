@@ -2,9 +2,8 @@
 % Import custom styles
 \input{styles/custom.sty}
 \input{styles/formatting.sty}
-
 \begin{document}
-% Title page
+% Title page with no page number
 \begin{titlepage}
     \centering
     \vspace*{1cm}
@@ -29,13 +28,18 @@
     {\large \today \par}
 \end{titlepage}
 
+% Start Roman numeral page numbering for front matter
+\pagenumbering{roman}
+
 % Table of contents
 \tableofcontents
 \clearpage
-
 % List of Tables
 \listoftables
 \clearpage
+
+% Switch to Arabic numerals for main content
+\pagenumbering{arabic}
 
 % Include sections
 \input{sections/executive-summary.tex}
