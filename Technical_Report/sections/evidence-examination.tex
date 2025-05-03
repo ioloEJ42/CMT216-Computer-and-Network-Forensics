@@ -153,19 +153,29 @@ As shown in Figure 6.5, file f0066494.png was recovered from carved files and co
 The file metadata visible in the table section of Figure 6.5 shows this file is 636,468 bytes in size with "Unallocated" status for both the file name and metadata, indicating it was deleted prior to the image acquisition. The timestamp fields all show null values (0000-00-00 00:00:00), which is consistent with data recovered from unallocated space where filesystem metadata is not preserved.
 
 \subsection{Email Evidence Analysis}
-Examination of the recovered email artifacts provided additional context for the investigation:
+Examination of recovered email artifacts yielded critical evidence directly linking to steganography techniques used to conceal recipe information:
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.95\textwidth]{images/Evidence Examination/Image6.png}
-    \caption{Email Artifact Recovery showing header information and technical details}
+    \caption{Email Artifact Recovery showing Base64-encoded content}
     \label{fig:email_artifact}
 \end{figure}
 
-Figure 6.6 displays an email artifact recovered from the image. The email headers show communication occurring on March 4, 2010, with the subject line "determ-iter." The message was sent between email addresses with the domain "domaingal.com" and contains various SMTP routing information and Microsoft Outlook metadata. The email appears to use multipart/alternative formatting and includes X-MS-Exchange headers suggesting it was processed through a corporate email system.
+Figure 6.6 displays an email artifact recovered from the f0017539.elf file. Initial analysis revealed that the file contained Base64-encoded content. When decoded, this content revealed a multi-part MIME message with both plaintext and HTML components. The plaintext component contained explicit instructions to "go to the website and decode the two png files" with a direct reference to the steganography tool at "https://stylesuxx.github.io/steganography/".
 
-The discovery of this email artifact is significant as it establishes a timeline for potential information exchange and identifies possible communication channels used during the suspected corporate espionage activities. The email metadata provides potential leads for further investigation, including domain names and IP addresses that could be linked to accomplices or recipients of the proprietary information.
+This evidence is particularly significant as it:
 
+\begin{itemize}
+    \item Establishes direct knowledge and intent to use steganographic techniques
+    \item Specifically references "two png files" that require decoding, likely corresponding to image files found elsewhere on the system
+    \item Provides the exact steganography tool used (accessible via the referenced URL), enabling investigators to use the same tool to extract hidden content
+    \item Contains email header information dating to March 4, 2010, establishing a timeline for these activities
+\end{itemize}
+
+The email headers show communication occurring between addresses with the domain "domaingal.com" and contain routing information through multiple servers. The use of Base64 encoding within an .elf file format suggests an additional layer of obfuscation beyond the steganography itself—a technique that would require technical knowledge beyond casual computer use.
+
+This discovery creates a direct investigative link to other image files recovered from the system, particularly those with the .png extension, as they may contain hidden recipe data accessible through the specifically mentioned steganography tool. The deliberate nature of these instructions, combined with the technical steps taken to conceal them, strongly suggests premeditated action rather than incidental activity.
 \subsection{Metadata Analysis of Recovered Content}
 Detailed examination of the second unallocated file containing recipe information yielded the following metadata characteristics:
 
