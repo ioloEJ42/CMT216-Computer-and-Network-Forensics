@@ -96,6 +96,45 @@ Further examination of the "tools" directory revealed the presence of S-Tools, a
 
 This evidence established not only the possession of steganographic tools but demonstrated proficiency in their use through practice files and optimized configurations. The progression from practice files (Shakespeare text) to sensitive corporate data (recipes) shows a deliberate capability development pattern consistent with premeditated information theft.
 
+\subsection{Discovery of Additional Steganographic Evidence: The Special Pink Donut}
+While examining files in the \texttt{/img\_Laptop Image.001/vol\_vol2/Family Photos/My Docs/} directory, a file named \texttt{dad.xls} was discovered. Forensic analysis of the extracted text from this file revealed a significant clue, as shown in Figure \ref{fig:dad_xls}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/Artifact and Evidence Recovery/dad_xls.png}
+    \caption{Extracted Text from dad.xls Referencing a "Special Pink Donut"}
+    \label{fig:dad_xls}
+\end{figure}
+
+The message "Just a little reminder. The secret lies in the Special Pink Donut" strongly suggested the existence of another steganographically hidden recipe, likely concealed within an image depicting a pink donut. Based on this inference and the established pattern of hiding sensitive information, a systematic search for image files was conducted.
+
+This investigative effort led to the discovery of a file named \texttt{1.png} located in a deeply nested directory structure:
+\begin{verbatim}
+/img_Laptop Image.001/vol_vol2/Family Photos/My Docs/downabit/downabitmore/secretstuff/out/1.png
+\end{verbatim}
+
+The depth of this directory path (five levels from \texttt{My Docs}) and the use of suggestive directory names like \texttt{downabit}, \texttt{downabitmore}, and \texttt{secretstuff} indicate deliberate obfuscation. The image file, shown in Figure \ref{fig:pink_donut}, depicts a pink-frosted donut consistent with the reference in \texttt{dad.xls}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/Artifact and Evidence Recovery/SpecialPinkDonut_recipe.png}
+    \caption{The "Special Pink Donut" Image Containing Hidden Steganographic Content}
+    \label{fig:pink_donut}
+\end{figure}
+
+Initial attempts to extract hidden content using the previously identified online steganography tool (https://stylesuxx.github.io/steganography/) were unsuccessful, suggesting a different steganographic method was employed. Following standard forensic methodology, additional steganography tools were tested using keywords related to bakery terminology (baker, flour, cake, donut, etc.) as potential passwords.
+
+A successful extraction was achieved using a steganography application called Stegoshare (available at https://sourceforge.net/projects/stegoshare/) with the password "donut". This extraction, shown in Figure \ref{fig:pink_donut_extract}, revealed another proprietary recipe.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/Artifact and Evidence Recovery/SpecialPinkDonut_extract.png}
+    \caption{Successfully Extracted Content from the Special Pink Donut Image Using Stegoshare}
+    \label{fig:pink_donut_extract}
+\end{figure}
+
+The use of multiple steganography tools and techniques demonstrates sophisticated operational security measures and suggests that the suspect was not only proficient with various data hiding methods but also deliberate in using different tools for different pieces of information. This varied approach would have made detection more difficult and created redundancy in the event that one hiding technique was discovered.
+
 \section{Keyword Search Using Dirty Word List}
 A methodical keyword search was conducted across all recovered files using a "dirty word list" compiled of terms commonly found in recipes and baking instructions. This approach was employed to identify potential recipe files that might have been stored in non-obvious locations or under misleading filenames.
 
