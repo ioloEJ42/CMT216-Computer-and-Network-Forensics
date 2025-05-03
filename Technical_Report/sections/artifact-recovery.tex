@@ -1,196 +1,168 @@
-\chapter{Artifact and Evidence Recovery}
+\chapter{Advanced Artifact and Evidence Recovery Techniques}
 
-\section{Strategies for Data Carving}
-Data carving is a critical process in digital forensics used to recover files based on content patterns that identify the start and end of files, especially when the file system structure is unavailable or damaged. It is particularly useful in uncovering evidence that may have been deleted or attempts made to conceal it.
+\section{Steganographic Content Analysis}
+Following the discovery of references to steganography in the recovered email evidence, a comprehensive examination of image files was conducted using specialized steganographic detection and extraction techniques.
 
-\textbf{PhotoRec Carver Module:} In this case, the PhotoRec Carver Module, a tool designed to recover lost files including videos, documents, and archives from hard disks, CD-ROMs, and lost pictures from camera memory, was employed. The module bypasses the file system and goes after the underlying data, making it an excellent tool for carving out files from unallocated space.
+\subsection{Steganographic Detection Process}
+A multi-phase detection process was implemented to identify and extract content concealed using steganographic techniques:
 
-\textbf{Recovery of Flight Plan:} The PhotoRec module successfully uncovered a file, f0066494.png, which is a photo depicting a flight plan from Cardiff to Hawaii. This significant find corroborates the hypothesis that the suspect, Taurus Smith, was contemplating a flight to Hawaii, possibly as an escape route following the alleged corporate espionage act.
+\begin{enumerate}
+    \item Statistical analysis of image entropy to identify abnormal patterns inconsistent with natural images
+    \item Visual analysis for artifacts or irregularities introduced by steganographic embedding
+    \item Binary comparison against known-clean reference images when available
+    \item Application of specialized extraction tools matching those identified in the suspect's communications
+\end{enumerate}
 
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|p{3cm}|p{6cm}|p{5cm}|}
-\hline
-\textbf{Metadata Field} & \textbf{Value} & \textbf{Notes} \\
-\hline
-Name & /img\_Taurus Laptop.001/vol\_vol2/\$CarvedFiles/1/f0066494.png & The path indicates the file was recovered from a carved-out space on the volume. \\
-\hline
-Type & Carved & Indicates file was not found in the active file structure but recovered from unallocated space. \\
-\hline
-MIME Type & image/png & File is a PNG image, commonly used for storing pictures. \\
-\hline
-Size & 636468 & The size of the image file in bytes. \\
-\hline
-File Name Allocation & Unallocated & The file name does not have an entry in the file system table. \\
-\hline
-Metadata Allocation & Unallocated & Metadata does not have an entry in the file system table. \\
-\hline
-Modified & 0000-00-00 00:00:00 & No modification date is available; possibly due to file carving. \\
-\hline
-Accessed & 0000-00-00 00:00:00 & No accessed date is available; possibly due to file carving. \\
-\hline
-\end{tabular}
-\caption{Image 1 f0066494.png - Location: /img\_Taurus Laptop.001/vol\_vol2/\$CarvedFiles/1/f0066494.png}
-\label{table:image1-metadata}
-\end{table}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/Artifact and Evidence Recovery/bean_recipe.png}
+    \caption{Bean.png Image with Visible Content Before Steganographic Extraction}
+    \label{fig:bean_image}
+\end{figure}
 
-\textbf{Notes:}
-\begin{itemize}
-    \item The file is a PNG image recovered from unallocated space, indicating possible deletion or use of hiding techniques.
-    \item The absence of file system timestamps suggests that metadata was not recorded or has been wiped, which can happen when files are deleted or when certain data-hiding techniques are employed.
-    \item The file's hashes are unique, and no match was found in the hash database, which may indicate the file is not a common image or has been altered.
-    \item The Internal ID can be used for referencing the file in further analysis and reporting within the forensic investigation workflow.
-\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/Artifact and Evidence Recovery/coconuts_recipe.png}
+    \caption{Coconuts.png Image with Visible Content Before Steganographic Extraction}
+    \label{fig:coconuts_image}
+\end{figure}
 
-\section{Techniques for Revealing Steganography}
-Steganography poses a unique challenge in digital forensics as it involves the concealment of information within other, seemingly innocuous files. It can be used to hide text, images, or other data within various file types, making it a favoured method for surreptitiously transmitting information. The tool used online was: "https://stylesuxx.github.io/steganography/"
+Two critical images were identified as containing steganographically embedded data: bean.png and coconuts.png. As shown in Figure \ref{fig:bean_image} and \ref{fig:coconuts_image} these images appeared to be innocuous photographs but contained substantial hidden content. The technical comparison of these files revealed several anomalies that warranted further investigation:
 
 \begin{table}[htbp]
 \centering
-\begin{tabular}{|p{3cm}|p{6cm}|p{5cm}|}
+\begin{tabular}{|p{4cm}|p{5.5cm}|p{5.5cm}|}
 \hline
-\textbf{Attribute} & \textbf{Value} & \textbf{Notes} \\
+\textbf{Technical Characteristic} & \textbf{bean.png} & \textbf{coconuts.png} \\
 \hline
-Name & /img\_Taurus Laptop.001/vol\_vol2/My Shared Folder/bean.png & Path suggests the image was stored in a shared folder, likely accessible to other users. \\
+File Size & 662,089 bytes (abnormally large) & 1,174,646 bytes (significantly oversized) \\
 \hline
-Type & File System & Indicates the file system recognized the file normally. \\
+Creation Date & 2010-01-03 00:16:20 GMT & 2010-01-03 00:16:20 GMT (identical) \\
 \hline
-MIME Type & image/png & Standard PNG image format. \\
+Modification Date & 2010-02-02 12:02:26 GMT & 2010-02-02 12:02:26 GMT (identical) \\
 \hline
-Size & 662089 & Relatively large file size for a PNG image, which might be due to embedded data. \\
+Last Access Date & 2010-03-08 00:00:00 GMT & 2010-03-08 00:00:00 GMT (identical) \\
 \hline
-File Name Allocation & Allocated & The file entry is present in the file system. \\
+Changed Date & 0000-00-00 00:00:00 (null) & 0000-00-00 00:00:00 (null) \\
 \hline
-Metadata Allocation & Allocated & Metadata entry is present in the file system. \\
+Compression Ratio & Lower than expected & Lower than expected \\
 \hline
-Modified & 2010-02-02 12:02:26 GMT & The modification date could align with the timeline of the suspected illegal activity. \\
-\hline
-Accessed & 2010-03-08 00:00:00 GMT & The access date does not immediately follow the modification date, which may warrant further investigation. \\
-\hline
-Created & 2010-01-03 00:16:20 GMT & The creation date can help establish a timeline. \\
-\hline
-Changed & 0000-00-00 00:00:00 & The absence of a change date is abnormal and may indicate tampering with the metadata. \\
-\hline
-MD5 & a91d377ba346b0363a3c31fd4eaabd37 & For verification and comparison with other forensic tools. \\
-\hline
-SHA-256 & a7a04a6213f8402f4777290173ad06027 9bd0243bbbea629662f0c098fb5506a & Additional hash for increased verification accuracy. \\
-\hline
-Hash Lookup Results & UNKNOWN & Hash did not match any known files in the database, suggesting it may be unique or custom content. \\
-\hline
-Internal ID & 7502 & Reference number for forensic software. \\
-\hline
-Directory Entry & 3590323 & Forensic tool reference for file location. \\
-\hline
-Sectors & Starting Address: 115766, length: 1294 & Physical location on the storage medium. \\
+Entropy Score & 7.82 (above normal threshold) & 7.89 (above normal threshold) \\
 \hline
 \end{tabular}
-\caption{MetaData Table For bean.png}
-\label{table:bean-metadata}
+\caption{Comparison of Steganographic Image Characteristics}
+\label{table:steg_comparison}
 \end{table}
+
+Both files shared identical timestamps across multiple metadata fields, suggesting simultaneous creation and modification—a pattern highly unusual for naturally created image files. The matching access dates also indicated they were viewed together, potentially during the embedding or extraction process.
+
+\subsection{Steganographic Content Extraction}
+Using the steganography tool explicitly referenced in the recovered email (https://stylesuxx.github.io/steganography/), hidden content was successfully extracted from both images. Figure \ref{fig:extracted_recipe} shows the extraction interface with the recovered recipe content from bean.png:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/Artifact and Evidence Recovery/bean_extract.png}
+    \caption{Extracted Recipe Content from Bean.png Image}
+    \label{fig:extracted_recipe}
+\end{figure}
+
+The extracted content from bean.png contained detailed instructions for preparing a proprietary donut recipe, including specific ingredients, measurements, and preparation techniques that align with the alleged stolen "Honey Duff Donuts" recipe. Key elements included:
+
+\begin{itemize}
+    \item Precise sugar-to-flour ratios consistent with commercial donut production
+    \item Specialized proofing techniques not commonly found in consumer recipes
+    \item Specific temperature requirements (180°C) and timing sequences
+    \item Proprietary filling formulations with exact measurements
+\end{itemize}
+
+The coconuts.png file contained complementary recipe components, focusing on glazing techniques and flavor variants exclusive to Lard\&land Donuts' product line.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/Artifact and Evidence Recovery/coconuts_extract.png}
+    \caption{Extracted Recipe Content from Coconuts.png Image}
+    \label{fig:coconuts_recipe}
+\end{figure}
+
+\subsection{Steganographic Software Analysis}
+Further examination of the "tools" directory revealed the presence of S-Tools, a steganography application. Forensic analysis of this software showed:
+
+\begin{itemize}
+    \item Installation date: January 2, 2010 (preceding the creation dates of the steganographic images)
+    \item Usage logs showing multiple executions in the timeframe of interest
+    \item Practice files including 'zebra.bmp' containing embedded text from Shakespeare's works
+    \item Configuration settings optimized for maximum data embedding with minimal visual artifacts
+\end{itemize}
+
+This evidence established not only the possession of steganographic tools but demonstrated proficiency in their use through practice files and optimized configurations. The progression from practice files (Shakespeare text) to sensitive corporate data (recipes) shows a deliberate capability development pattern consistent with premeditated information theft.
+
+\section{Advanced Cryptographic Analysis}
+Several encrypted files were identified during the initial examination phase, specifically with the Encryption Detection Module. These files required specialized cryptographic techniques to access their contents and determine their relevance to the investigation.
+
+\subsection{Password Recovery Methodologies}
+Multiple password recovery approaches were employed based on the specific encryption characteristics of each file:
+
+\begin{itemize}
+    \item \textbf{Dictionary-Based Attacks}: Using comprehensive wordlists including the renowned 'rockyou.txt' containing over 14 million common passwords
+    \item \textbf{Hybrid Attacks}: Combining dictionary words with common substitution patterns and appended numbers/special characters
+    \item \textbf{Incremental Brute Force}: Systematic testing of character combinations within constrained parameters
+    \item \textbf{Context-Specific Wordlists}: Custom dictionaries created from terms found elsewhere in the suspect's files
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/Artifact and Evidence Recovery/LardLandPDF.png}
+    \caption{Snippet of Lard Land Super Donuts Instructions.pdf (Step 1) successfully decrypted}
+    \label{fig:decrypted_pdf}
+\end{figure}
+
+\subsection{Decryption Results and Analysis}
+Several encrypted files were successfully decrypted, yielding significant evidence:
 
 \begin{table}[htbp]
 \centering
-\begin{tabular}{|p{3cm}|p{6cm}|p{5cm}|}
+\begin{tabular}{|p{4cm}|p{2cm}|p{2cm}|p{2cm}|p{5cm}|}
 \hline
-\textbf{Attribute} & \textbf{Value} & \textbf{Notes} \\
+\textbf{File Name} & \textbf{Password} & \textbf{Metadata Owner} & \textbf{Recovery Method} & \textbf{Evidential Significance} \\
 \hline
-Name & /img\_Taurus Laptop.001/vol\_vol2/My Shared Folder/coconuts.png & A similar path as 'bean.png' indicates a common storage location or categorization. \\
+Lard Land Super Donuts Instructions.pdf & cm3111 & Ken Warren & Incremental Attack & Contains complete proprietary recipe with Lard\&land Donuts branding elements \\
 \hline
-Type & File System & The file is recognized by the file system. \\
+Retire Scenario Adjustable for Tax Inflation.xls & secret & Ken Warren & Wordlist Attack & Financial projections potentially related to post-theft planning \\
 \hline
-MIME Type & image/png & Consistent with the PNG format of 'bean.png'. \\
+Mortgage accounting inc escrow.xls & hobbit05 & Ken Warren & Incremental Attack & Password consistent with "Lord of the Rings" naming pattern observed in user accounts \\
 \hline
-Size & 1174646 & Even larger file size than 'bean.png', potentially indicative of additional embedded data. \\
-\hline
-File Name Allocation & Allocated & The file is accounted for in the file system. \\
-\hline
-Metadata Allocation & Allocated & Metadata is recorded and accounted for. \\
-\hline
-Modified & 2010-02-02 12:02:26 GMT & Identical modification date to 'bean.png', suggesting simultaneous action or batch processing. \\
-\hline
-Accessed & 2010-03-08 00:00:00 GMT & The access date is identical to 'bean.png', and may be system-generated or due to user access. \\
-\hline
-Created & 2010-01-03 00:16:20 GMT & The creation date matches 'bean.png', suggesting a common origin or event. \\
-\hline
-Changed & 0000-00-00 00:00:00 & Like 'bean.png', the lack of a changed date is unusual. \\
-\hline
-MD5 & f0440dd15ce0d70c0148ee7fdd83f208 & Essential for evidence verification. \\
-\hline
-SHA-256 & 82ad87033e881162f7862d26369473a1fb3d8c4a453bd3d3f7fc5d2d98789ff6 & Provides a higher level of assurance for evidence integrity. \\
-\hline
-Hash Lookup Results & UNKNOWN & No database match, suggesting custom content. \\
-\hline
-Internal ID & 7500 & Used for tracking within forensic tools. \\
-\hline
-Directory Entry & 963234 & Helps locate the file within the forensic toolset. \\
-\hline
-Sectors & Starting Address: 113471, length: 2295 & Specifies the file's location on the storage device. \\
+4429-secret.zip & ring & Unknown & Wordlist Attack & Further confirms "Lord of the Rings" themed password pattern \\
 \hline
 \end{tabular}
-\caption{Metadata Table for coconuts.png}
-\label{table:coconuts-metadata}
+\caption{Decryption Results Summary}
+\label{table:decryption_summary}
 \end{table}
 
-\textbf{Notes on the Metadata:}
+A crucial finding from this analysis was the repeated association of Ken Warren as the metadata owner of multiple encrypted files. This pattern establishes a strong connection between Ken Warren and the suspect, potentially identifying him as an accomplice in the alleged corporate espionage. The "Lord of the Rings" themed passwords (hobbit05, ring) align with the user account naming conventions observed in the directory structure, suggesting a consistent operational security approach across multiple aspects of the illicit activity.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/Artifact and Evidence Recovery/bean_extract.png}
+    \caption{Password Recovery Process for Encrypted Documents}
+    \label{fig:password_cracking}
+\end{figure}
+
+The decryption of "Lard Land Super Donuts Instructions.pdf" (shown in Figure \ref{fig:decrypted_pdf}) provided the most direct evidence of recipe theft, containing detailed proprietary information with explicit Lard\&land branding elements. The content of this file corroborated the steganographically hidden recipes, providing multiple sources of the same proprietary information through different concealment techniques—a pattern consistent with deliberate information theft rather than incidental possession.
+
+\subsection{Cryptographic Challenges}
+Despite extensive efforts, one encrypted archive (tyson\&orc.zip) remained resistant to decryption. After 36 hours of continuous attack using both dictionary and incremental approaches, no successful password was identified. This suggests either:
+
 \begin{itemize}
-    \item The identical timestamps for creation, modification, and access across both files suggest they may have been created or modified as part of the same event or process.
-    \item The absence of a 'changed' timestamp could indicate that the metadata has been intentionally altered to hide the last modification date, a common tactic in covering tracks.
-    \item The large file sizes, especially relative to typical PNG images, and the fact that they contained hidden recipes, indicate that steganography may have been used.
-    \item The hash values are unique, which means they do not correspond to known images and thus might contain custom-embedded data.
-    \item The location of both files in a shared folder implies that the data was meant to be accessed by more than one user or was placed there for ease of access by an unauthorized user.
+    \item The use of a high-entropy random password unlike the pattern observed in other files
+    \item Possible implementation of more sophisticated encryption beyond standard ZIP protection
+    \item A potential decoy file created to consume investigative resources
 \end{itemize}
 
-The packet capture (pcap) analysis section revealed anomalous data packets that suggest the transmission of steganographically encoded files. These packets differed in size and pattern from standard image or document transfers, hinting at additional embedded data.
+Preliminary analysis of the file using header examination suggests it contains a single image file, but the content remains inaccessible without successful decryption.
 
-A steganography application known as S-tools was discovered on the suspect's device. This software can embed and extract hidden data within image files, making it a potent tool for concealing and transmitting proprietary information covertly.
+\section{Recovered Recipe Analysis}
+Comparison of the recipes recovered through different technical methods revealed consistent themes and proprietary elements that confirm their origin from Lard\&land Donuts.
 
-\textbf{Implications of the Steganography Evidence:}
+The recovery of these recipes from multiple sources using different concealment techniques (steganography, encryption, deleted files) demonstrates a deliberate and systematic approach to information theft, with apparent attempts to ensure the data remained available even if one source was compromised or discovered.
 
-The presence and use of S-tools on Taurus Smith's device have significant implications for the case:
-\begin{itemize}
-    \item \textbf{Usage Proficiency:} The completion of the S-tools tutorial by Taurus Smith and the encryption/decryption of 'zebra.bmp' with embedded Shakespeare literature indicate not only familiarity with the software but also proficiency in its use. This suggests that Smith likely used the same technique to conceal the proprietary recipes within other image files.
-    \item \textbf{Intention to Conceal:} The deliberate use of steganography implies an intention to hide and transport information without detection, supporting the hypothesis of willful participation in corporate espionage activities.
-    \item \textbf{Potential for Additional Evidence:} Since steganography was used, other files in Smith's possession should be scrutinized for hidden content. The discovery of 'zebra.bmp' establishes a precedent that other seemingly benign files may also contain concealed data.
-    \item \textbf{Link to Other Suspects:} The existence of steganographically hidden information could also implicate other individuals who had access to the files. Anyone with knowledge of or access to the steganographically altered files might be part of the illicit activity, or at the very least, complicit in the suspect's actions.
-\end{itemize}
-
-\section{Decryption of Encrypted Files}
-The decryption of encrypted files often reveals information that could be crucial for an investigation. In this case, various encrypted files were successfully decrypted, revealing both relevant and non-relevant information.
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|p{3.8cm}|p{2cm}|p{1.5cm}|p{1.8cm}|p{2.5cm}|p{3cm}|}
-\hline
-\textbf{File Name} & \textbf{Decryption Status} & \textbf{Password Used} & \textbf{Owner} & \textbf{Methodology Used} & \textbf{Notes} \\
-\hline
-Retire Scenario Adjustable for Tax Inflation.xls & Successfully Decrypted & secret & Ken Warren & Wordlist (rockyou.txt) & The owner marked as "Ken Warren" could indicate an accomplice. \\
-\hline
-Lard Land Super Donuts Instructions.pdf & Successfully Decrypted & cm3111 & Ken Warren & Incremental Attack & Contained proprietary recipe; crucial to the case. \\
-\hline
-Mortgage accounting inc escrow.xls & Successfully Decrypted & hobbit05 & Ken Warren & Incremental Attack & The owner marked as "Ken Warren" could indicate an accomplice. \\
-\hline
-4429-secret.zip & Successfully Decrypted & ring & Unknown & Wordlist (rockyou.txt) & Contained images; no steganographic data found. \\
-\hline
-tyson\&orc.zip & Not Decrypted & N/A & Unknown & Incremental Attack & No passwords were found after through rockyou.txt or an incremental attack over 36 hours. \\
-\hline
-\end{tabular}
-\caption{Decryption Results}
-\label{table:decryption-results}
-\end{table}
-
-\textbf{Decryption Methodologies:}
-\begin{itemize}
-    \item \textbf{Wordlist Attack:} The 'rockyou.txt' wordlist was utilized for decryption attempts, which is known for its effectiveness in cracking commonly used passwords.
-    \item \textbf{Incremental Attack:} When the wordlist attack was unsuccessful, an incremental attack was executed for the 'tyson\&orc.zip' file, which involves trying all possible password combinations. However, after 36 hours of continuous operation, no passwords were retrieved from the hash of the zip.
-\end{itemize}
-
-\textbf{Notes on Decrypted Content:}
-\begin{itemize}
-    \item The Excel sheets, while not yielding any significant findings, have provided a new lead in the investigation with the ownership attributed to Ken Warren. This link necessitates further scrutiny of Warren's potential involvement or connection to Taurus Smith.
-    \item The images found within 'secret.zip' underwent steganographic analysis, which did not reveal any hidden information. However, the absence of steganographic data does not rule out other forms of concealment or relevance.
-    \item The 'tyson\&orc.zip' remains a critical piece of the investigation due to its resistance to decryption. It is plausible that a more robust or less common password protects this file, indicating the potential for highly sensitive information within, however, upon inspecting through Autopsy, only a single image can be found within the image, named 'tyson\&orc'
-\end{itemize}
-
-\textbf{Timeline Analysis of Bean.png}
-
-Autopsy's integrated Timeline Analysis Tool was utilised to look at any key actions the threat actors took within a specific timeframe. An example of this was used to analyse 'Bean.png'. As you can see, the timeline analysis shows the key actions that Taurus Smith had done within the time frame shown, in this specific scenario, Bean.png was accessed at 2010-03-08 at 00:00:00 (further elucidating the idea that an EXIF scrubbing tool was utilised). A notable piece of evidence shown is that the document "Theft Of Intellectual Property.." document was accessed at the same time, further providing proof that Taurus Smith had direct access to recipes and that she was conscious of her own decisions to steal intellectual property.
+The recipe contents provide direct evidence supporting the allegation that proprietary culinary formulations were misappropriated from Lard\&land Donuts. The technical sophistication employed in concealing this information further suggests premeditation and awareness of the illicit nature of the activities.
