@@ -96,6 +96,68 @@ Further examination of the "tools" directory revealed the presence of S-Tools, a
 
 This evidence established not only the possession of steganographic tools but demonstrated proficiency in their use through practice files and optimized configurations. The progression from practice files (Shakespeare text) to sensitive corporate data (recipes) shows a deliberate capability development pattern consistent with premeditated information theft.
 
+\section{Keyword Search Using Dirty Word List}
+A methodical keyword search was conducted across all recovered files using a "dirty word list" compiled of terms commonly found in recipes and baking instructions. This approach was employed to identify potential recipe files that might have been stored in non-obvious locations or under misleading filenames.
+
+\subsection{Dirty Word List Development and Implementation}
+The dirty word list was constructed to include generic baking terminology, specific donut-related terms, and ingredients that would likely appear in proprietary recipes:
+
+\begin{itemize}
+    \item Common baking ingredients: flour, sugar, yeast, eggs, milk, butter
+    \item Baking techniques: mix, knead, proof, bake, fry
+    \item Donut-specific terminology: glaze, filling, dough, honey
+    \item Measurement terms: cups, teaspoons, grams, ounces
+\end{itemize}
+
+The search was conducted using Autopsy's Keyword Search module with both exact match and regular expression capabilities to account for variations in terminology.
+
+\subsection{Basic Donuts.doc Discovery}
+The keyword search for the term "flour" immediately yielded significant results, uncovering a document titled "Basic Donuts.doc" located in an unexpected directory path:
+
+\begin{verbatim}
+img_Laptop Image.001/vol_vol2/Family Photos/My Docs/Basic Donuts.doc
+\end{verbatim}
+
+Key metadata for this file revealed:
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|p{3cm}|p{7cm}|}
+\hline
+\textbf{Metadata} & \textbf{Value} \\
+\hline
+Created & 2010-03-04 00:06:49 GMT \\
+\hline
+Modified & 2010-03-04 13:35:24 GMT \\
+\hline
+Accessed & 2010-03-07 00:00:00 GMT \\
+\hline
+File Size & 24064 bytes \\
+\hline
+MD5 Hash & b4ffc53f767f121ef1d8914d46540cf0 \\
+\hline
+File Status & Allocated (not deleted) \\
+\hline
+File Type & application/msword (doc) \\
+\hline
+\end{tabular}
+\caption{Metadata for Basic Donuts.doc File}
+\label{table:basic_donuts_metadata}
+\end{table}
+
+The placement of this recipe file within a directory labeled "Family Photos" represents a deliberate attempt at obfuscation, as users would typically not expect to find document files in a photo collection. This misclassification appears intended to hide the file from casual observation or automated file type analysis.
+
+Unlike other recipe files discovered in the investigation, this document was neither encrypted nor steganographically hidden, suggesting it may have been considered less sensitive or was intended for more regular access. The file's "last accessed" date (March 7, 2010) indicates it was viewed shortly before the suspected data exfiltration activities identified in the network analysis.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/Artifact and Evidence Recovery/BasicDonuts.png}
+    \caption{Basic Donuts Recipe Document Content}
+    \label{fig:basic_donuts}
+\end{figure}
+
+Document analysis revealed the file contained a simplified version of a donut recipe with several key components matching those found in the more detailed, concealed recipes. While lacking some of the proprietary elements, this document appears to serve as a "base recipe" that could be enhanced with the proprietary techniques and ingredients detailed in the hidden files. The document's structure and terminology align with professional culinary standards rather than typical home cooking instructions, supporting its connection to commercial food production.
+
 \section{Advanced Cryptographic Analysis}
 Several encrypted files were identified during the initial examination phase, specifically with the Encryption Detection Module. These files required specialized cryptographic techniques to access their contents and determine their relevance to the investigation.
 
