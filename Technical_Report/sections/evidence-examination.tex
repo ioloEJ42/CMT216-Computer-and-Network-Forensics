@@ -117,6 +117,7 @@ Through specialized carving techniques applied to unallocated space, two signifi
         \item Size: 975,764,480 bytes (approximately 930 MB)
         \item MIME classification: application/octet-stream
         \item Initial binary analysis revealed structured data patterns suggestive of document or spreadsheet formatting
+        \item No identifiable text content was recovered from this file, indicating it may have been a temporary or intermediate file created during data processing
     \end{itemize}
     
     \item \textbf{Second Unallocated Space File (Recipe Container):}
@@ -136,7 +137,7 @@ Through specialized carving techniques applied to unallocated space, two signifi
     \label{fig:hex_view}
 \end{figure}
 
-Figure 6.4 shows the text content recovered from the unallocated space, which contains detailed step-by-step instructions for what appears to be a donut recipe. The content includes specific cooking temperatures (180°C for oil), precise measurements (50g pieces of dough), and detailed filling instructions for various flavors including custard, chocolate, coffee, and saffron. The structured format with numbered steps (STEP 3 through STEP 13) indicates this is a formal recipe document rather than casual notes. The technical details about dough consistency, proofing techniques, and cooking methodology suggest this is a professional culinary formula rather than a home recipe.
+\ref{fig:hex_view} shows the text content recovered from the unallocated space, which contains detailed step-by-step instructions for what appears to be a donut recipe. The content includes specific cooking temperatures (180°C for oil), precise measurements (50g pieces of dough), and detailed filling instructions for various flavors including custard, chocolate, coffee, and saffron. The structured format with numbered steps (STEP 3 through STEP 13) indicates this is a formal recipe document rather than casual notes. The technical details about dough consistency, proofing techniques, and cooking methodology suggest this is a professional culinary formula rather than a home recipe.
 
 \subsection{Carving Results and Travel Evidence}
 Analysis of carved files from unallocated space yielded additional evidence of significant investigative value:
@@ -148,7 +149,7 @@ Analysis of carved files from unallocated space yielded additional evidence of s
     \label{fig:flight_plan}
 \end{figure}
 
-As shown in Figure 6.5, file f0066494.png was recovered from carved files and contains a map depicting a flight route from Cardiff, Wales to Hawaii. The image shows a travel time of "1 day 11 hr" and appears to be a flight planning document. This evidence directly supports the hypothesis that Taurus Smith was planning international travel, potentially as part of an effort to distribute the proprietary recipe information or meet with collaborators.
+As shown in Figure \ref{fig:flight_plan}, file f0066494.png was recovered from carved files and contains a map depicting a flight route from Cardiff, Wales to Hawaii. The image shows a travel time of "1 day 11 hr" and appears to be a flight planning document. This evidence directly supports the hypothesis that Taurus Smith was planning international travel, potentially as part of an effort to distribute the proprietary recipe information or meet with collaborators.
 
 The file metadata visible in the table section of Figure 6.5 shows this file is 636,468 bytes in size with "Unallocated" status for both the file name and metadata, indicating it was deleted prior to the image acquisition. The timestamp fields all show null values (0000-00-00 00:00:00), which is consistent with data recovered from unallocated space where filesystem metadata is not preserved.
 
@@ -162,7 +163,7 @@ Examination of recovered email artifacts yielded critical evidence directly link
     \label{fig:email_artifact}
 \end{figure}
 
-Figure 6.6 displays an email artifact recovered from the f0017539.elf file. Initial analysis revealed that the file contained Base64-encoded content. When decoded, this content revealed a multi-part MIME message with both plaintext and HTML components. The plaintext component contained explicit instructions to "go to the website and decode the two png files" with a direct reference to the steganography tool at "https://stylesuxx.github.io/steganography/".
+Figure \ref{fig:email_artifact} displays an email artifact recovered from the f0017539.elf file. Initial analysis revealed that the file contained Base64-encoded content. When decoded, this content revealed a multi-part MIME message with both plaintext and HTML components. The plaintext component contained explicit instructions to "go to the website and decode the two png files" with a direct reference to the steganography tool at "https://stylesuxx.github.io/steganography/".
 
 This evidence is particularly significant as it:
 
