@@ -158,11 +158,13 @@ Unlike other recipe files discovered in the investigation, this document was nei
 
 Document analysis revealed the file contained a simplified version of a donut recipe with several key components matching those found in the more detailed, concealed recipes. While lacking some of the proprietary elements, this document appears to serve as a "base recipe" that could be enhanced with the proprietary techniques and ingredients detailed in the hidden files. The document's structure and terminology align with professional culinary standards rather than typical home cooking instructions, supporting its connection to commercial food production.
 
+The discovery of this unencrypted recipe file through keyword searching demonstrates the effectiveness of the dirty word list approach and highlights the suspect's inconsistent security practices across different pieces of potentially incriminating evidence.
+
 \section{Advanced Cryptographic Analysis}
 Several encrypted files were identified during the initial examination phase, specifically with the Encryption Detection Module. These files required specialized cryptographic techniques to access their contents and determine their relevance to the investigation.
 
 \subsection{Password Recovery Methodologies}
-Multiple password recovery approaches were employed based on the specific encryption characteristics of each file:
+Multiple password recovery approaches were employed based on the specific encryption characteristics of each file. John The Ripper was used for both incremental and dictionary-based attacks, running in a dedicated Kali Linux virtual machine within the Forensic Workstation environment. This configuration provided the necessary computational resources and specialized tools for efficient password recovery:
 
 \begin{itemize}
     \item \textbf{Dictionary-Based Attacks}: Using comprehensive wordlists including the renowned 'rockyou.txt' containing over 14 million common passwords
