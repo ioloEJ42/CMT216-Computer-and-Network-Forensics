@@ -111,7 +111,8 @@ The message "Just a little reminder. The secret lies in the Special Pink Donut" 
 
 This investigative effort led to the discovery of a file named \texttt{1.png} located in a deeply nested directory structure:
 \begin{verbatim}
-/img_Laptop Image.001/vol_vol2/Family Photos/My Docs/downabit/downabitmore/secretstuff/out/1.png
+/img_Laptop Image.001/vol_vol2/Family Photos/My Docs/
+downabit/downabitmore/secretstuff/out/1.png
 \end{verbatim}
 
 The depth of this directory path (five levels from \texttt{My Docs}) and the use of suggestive directory names like \texttt{downabit}, \texttt{downabitmore}, and \texttt{secretstuff} indicate deliberate obfuscation. The image file, shown in Figure \ref{fig:pink_donut}, depicts a pink-frosted donut consistent with the reference in \texttt{dad.xls}.
@@ -123,9 +124,9 @@ The depth of this directory path (five levels from \texttt{My Docs}) and the use
     \label{fig:pink_donut}
 \end{figure}
 
-Initial attempts to extract hidden content using the previously identified online steganography tool (https://stylesuxx.github.io/steganography/) were unsuccessful, suggesting a different steganographic method was employed. Following standard forensic methodology, additional steganography tools were tested using keywords related to bakery terminology (baker, flour, cake, donut, etc.) as potential passwords.
+Initial attempts to extract hidden content using the previously identified online steganography tool \url{https://stylesuxx.github.io/steganography/} were unsuccessful, suggesting a different steganographic method was employed. Following standard forensic methodology, additional steganography tools were tested using keywords related to bakery terminology (baker, flour, cake, donut, etc.) as potential passwords.
 
-A successful extraction was achieved using a steganography application called Stegoshare (available at https://sourceforge.net/projects/stegoshare/) with the password "donut". This extraction, shown in Figure \ref{fig:pink_donut_extract}, revealed another proprietary recipe.
+A successful extraction was achieved using a steganography application called Stegoshare available at \url{https://sourceforge.net/projects/stegoshare/} with the password "donut". This extraction, shown in Figure \ref{fig:pink_donut_extract}, revealed another proprietary recipe.
 
 \begin{figure}[htbp]
     \centering

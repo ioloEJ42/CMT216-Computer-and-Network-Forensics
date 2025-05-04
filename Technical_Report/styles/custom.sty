@@ -26,15 +26,16 @@
 \usepackage{multirow}
 \usepackage{appendix}
 \usepackage{csquotes}
-\usepackage{tcolorbox} % Added tcolorbox package which was missing
+\usepackage{tcolorbox}
 \usepackage[style=ieee]{biblatex}
 \addbibresource{references.bib}
 
-% Define colors for forensic report
+% Define improved colors for forensic report
 \definecolor{forestgreen}{RGB}{34, 139, 34}
-\definecolor{darkblue}{RGB}{0, 0, 139}
+\definecolor{darkblue}{RGB}{0, 51, 102}
 \definecolor{maroon}{RGB}{128, 0, 0}
-\definecolor{lightgray}{RGB}{211, 211, 211}
+\definecolor{lightgray}{RGB}{240, 240, 240}
+\definecolor{headerblue}{RGB}{21, 67, 96}
 
 % Custom command for evidence labels
 \newcommand{\evidence}[1]{\textcolor{maroon}{\textbf{Evidence #1}}}
@@ -47,13 +48,20 @@
 
 % Custom environment for technical details
 \newenvironment{techdetails}
-{\begin{tcolorbox}[colback=lightgray!50,colframe=darkblue,title=Technical Details]}
+{\begin{tcolorbox}[colback=lightgray,colframe=darkblue,title=Technical Details,fonttitle=\bfseries]}
 {\end{tcolorbox}}
 
 % Custom environment for evidence box
 \newenvironment{evidencebox}[1]
-{\begin{tcolorbox}[colback=lightgray!30,colframe=maroon,title=Evidence #1]}
+{\begin{tcolorbox}[colback=lightgray!30,colframe=maroon,title=Evidence #1,fonttitle=\bfseries]}
 {\end{tcolorbox}}
+
+% Section divider for visual breaks
+\newcommand{\sectiondivider}{
+    \begin{center}
+        \color{darkblue}\rule{0.5\textwidth}{1pt}
+    \end{center}
+}
 
 % Custom listings style for code and data snippets
 \lstset{
@@ -61,10 +69,12 @@
     keywordstyle=\color{blue},
     commentstyle=\color{forestgreen},
     stringstyle=\color{maroon},
+    backgroundcolor=\color{lightgray!30},
     numbers=left,
-    numberstyle=\tiny,
+    numberstyle=\tiny\color{darkblue},
     numbersep=5pt,
     frame=single,
+    framesep=3pt,
     breaklines=true,
     breakatwhitespace=true,
     showstringspaces=false
