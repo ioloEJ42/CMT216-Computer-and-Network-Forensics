@@ -7,6 +7,7 @@ The NTUSER.DAT file constitutes a critical element in Windows forensics, as it c
 For this analysis, two industry-standard tools were employed to extract and interpret the registry data:
 
 \begin{itemize}
+    \small
     \item \textbf{FTK Imager (Version 4.7.1)}: Used to initially mount and extract the NTUSER.DAT file from the provided evidence image while maintaining forensic integrity
     \item \textbf{RegRipper (Version 3.0)}: Deployed to parse the registry hive and extract relevant forensic artifacts in a structured format
 \end{itemize}
@@ -50,14 +51,14 @@ Analysis of the WordWheelQuery key revealed search patterns directly related to 
 
 The temporal sequence in Figure \ref{tab:search_queries} demonstrates a progression from general donut research to location-specific queries focused on Cardiff. This directly corroborates other evidence found in the investigation, particularly the network communications regarding donut recipes. The search for "newrecipe" is especially significant as it aligns with the evidence of recipe theft uncovered in the steganographic analysis.
 
-\textbf{Registry Path:} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Windows\textbackslash CurrentVersion\textbackslash Explorer\textbackslash WordWheelQuery}
+\texttt{\small NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Windows\textbackslash CurrentVersion\\\textbackslash Explorer\textbackslash WordWheelQuery}
 
 \subsection{Direct URL Access}
 The TypedURLs registry key provided additional evidence of suspicious internet activity:
 
 \begin{itemize}
     \item \texttt{url1: "http://131.10.28.251:53/"} - Direct IP address access using DNS port (53)
-    \item \texttt{url2: "http://cardiffdonut.com/fwlink/?LinkId=69157"} - Domain consistent with search queries
+    \item \texttt{url2: \url{http://cardiffdonut.com/fwlink/?LinkId=69157}} - Domain consistent with search queries
 \end{itemize}
 
 \textbf{Registry Path:} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Internet Explorer\textbackslash TypedURLs}\\
@@ -167,9 +168,9 @@ This indicates a preference for Firefox over Internet Explorer, or potentially a
 \section{Latest Typed URL}
 One of the key requirements of this investigation was to identify the latest typed URL. Based on the TypedURLs registry key LastWrite time (2012-04-03 22:37:55Z) and the MRU order, the most recently typed URL was:
 
-\begin{verbatim}
-http://cardiffdonut.com/fwlink/?LinkId=69157
-\end{verbatim}
+
+\url{http://cardiffdonut.com/fwlink/?LinkId=69157}
+
 
 This URL is significant as it:
 \begin{itemize}
@@ -263,7 +264,7 @@ The comprehensive analysis of the NTUSER.DAT registry hive has yielded several s
     
     \item \textbf{Donut Research Focus}: The search history clearly demonstrates focused research on donuts, new recipes, and specifically Cardiff-based donut businesses, strongly supporting the allegation of corporate espionage targeting Lard\&land Donuts.
     
-    \item \textbf{Latest Typed URL}: The latest typed URL was identified as \texttt{http://cardiffdonut.com/fwlink/?LinkId=69157}, directly answering another key investigation requirement.
+    \item \textbf{Latest Typed URL}: The latest typed URL was identified as \url{http://cardiffdonut.com/fwlink/?LinkId=69157}, directly answering another key investigation requirement.
     
     \item \textbf{Suspicious Activities}: Evidence of suspicious software execution, unusual network access, and sensitive file operations collectively supports the hypothesis of deliberate and sophisticated data theft.
     

@@ -13,14 +13,14 @@ A multi-phase detection process was implemented to identify and extract content 
     \item Application of specialized extraction tools matching those identified in the suspect's communications
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Artifact and Evidence Recovery/bean_recipe.png}
     \caption{Bean.png Image with Visible Content Before Steganographic Extraction}
     \label{fig:bean_image}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Artifact and Evidence Recovery/coconuts_recipe.png}
     \caption{Coconuts.png Image with Visible Content Before Steganographic Extraction}
@@ -31,6 +31,7 @@ Two critical images were identified as containing steganographically embedded da
 
 \begin{table}[htbp]
 \centering
+\small
 \begin{tabular}{|p{4cm}|p{5.5cm}|p{5.5cm}|}
 \hline
 \textbf{Technical Characteristic} & \textbf{bean.png} & \textbf{coconuts.png} \\
@@ -59,7 +60,7 @@ Both files shared identical timestamps across multiple metadata fields, suggesti
 \subsection{Steganographic Content Extraction}
 Using the steganography tool explicitly referenced in the recovered email (https://stylesuxx.github.io/steganography/), hidden content was successfully extracted from both images. Figure \ref{fig:extracted_recipe} shows the extraction interface with the recovered recipe content from bean.png:
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\textwidth]{images/Artifact and Evidence Recovery/bean_extract.png}
     \caption{Extracted Recipe Content from Bean.png Image}
@@ -77,7 +78,7 @@ The extracted content from bean.png contained detailed instructions for preparin
 
 The coconuts.png file contained complementary recipe components, focusing on glazing techniques and flavor variants exclusive to Lard\&land Donuts' product line.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Artifact and Evidence Recovery/coconuts_extract.png}
     \caption{Extracted Recipe Content from Coconuts.png Image}
@@ -99,7 +100,7 @@ This evidence established not only the possession of steganographic tools but de
 \subsection{Discovery of Additional Steganographic Evidence: The Special Pink Donut}
 While examining files in the \texttt{/img\_Laptop Image.001/vol\_vol2/Family Photos/My Docs/} directory, a file named \texttt{dad.xls} was discovered. Forensic analysis of the extracted text from this file revealed a significant clue, as shown in Figure \ref{fig:dad_xls}.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{images/Artifact and Evidence Recovery/dad_xls.png}
     \caption{Extracted Text from dad.xls Referencing a "Special Pink Donut"}
@@ -115,7 +116,7 @@ This investigative effort led to the discovery of a file named \texttt{1.png} lo
 
 The depth of this directory path (five levels from \texttt{My Docs}) and the use of suggestive directory names like \texttt{downabit}, \texttt{downabitmore}, and \texttt{secretstuff} indicate deliberate obfuscation. The image file, shown in Figure \ref{fig:pink_donut}, depicts a pink-frosted donut consistent with the reference in \texttt{dad.xls}.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.75\textwidth]{images/Artifact and Evidence Recovery/SpecialPinkDonut_recipe.png}
     \caption{The "Special Pink Donut" Image Containing Hidden Steganographic Content}
@@ -126,7 +127,7 @@ Initial attempts to extract hidden content using the previously identified onlin
 
 A successful extraction was achieved using a steganography application called Stegoshare (available at https://sourceforge.net/projects/stegoshare/) with the password "donut". This extraction, shown in Figure \ref{fig:pink_donut_extract}, revealed another proprietary recipe.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{images/Artifact and Evidence Recovery/SpecialPinkDonut_extract.png}
     \caption{Successfully Extracted Content from the Special Pink Donut Image Using Stegoshare}
@@ -188,7 +189,7 @@ The placement of this recipe file within a directory labeled "Family Photos" rep
 
 Unlike other recipe files discovered in the investigation, this document was neither encrypted nor steganographically hidden, suggesting it may have been considered less sensitive or was intended for more regular access. The file's "last accessed" date (March 7, 2010) indicates it was viewed shortly before the suspected data exfiltration activities identified in the network analysis.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{images/Artifact and Evidence Recovery/BasicDonuts.png}
     \caption{Basic Donuts Recipe Document Content}
@@ -212,7 +213,7 @@ Multiple password recovery approaches were employed based on the specific encryp
     \item \textbf{Context-Specific Wordlists}: Custom dictionaries created from terms found elsewhere in the suspect's files
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{images/Artifact and Evidence Recovery/LardLandPDF.png}
     \caption{Snippet of Lard Land Super Donuts Instructions.pdf (Step 1) successfully decrypted}
@@ -224,6 +225,7 @@ Several encrypted files were successfully decrypted, yielding significant eviden
 
 \begin{table}[htbp]
 \centering
+\small
 \begin{tabular}{|p{4cm}|p{2cm}|p{2cm}|p{2cm}|p{5cm}|}
 \hline
 \textbf{File Name} & \textbf{Password} & \textbf{Metadata Owner} & \textbf{Recovery Method} & \textbf{Evidential Significance} \\

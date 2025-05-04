@@ -11,7 +11,7 @@ Initial examination of the imaged drive revealed a dual-partition structure with
     \item A primary Win95 FAT32 (LBA) partition labeled 'vol2 (Win95 FAT32: 0x0c: 63-3915584)' housing the main filesystem
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Evidence Examination/Image1.png}
     \caption{Autopsy Partition Analysis View showing the dual-partition structure}
@@ -25,7 +25,7 @@ Examination of the partition details revealed notable findings. The unallocated 
 \subsection{File Type Distribution Analysis}
 Comprehensive categorization of file types within the image reveals significant patterns in data storage and potential areas for focused investigation. Figure 6.2 illustrates the distribution of file types across the storage volume:
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Evidence Examination/Image2.png}
     \caption{File Type Distribution Analysis showing proportions of various file categories}
@@ -49,7 +49,7 @@ The unusually high proportion of files categorized as "Other" and "Unknown" repr
 \subsection{Directory Hierarchy and Content Analysis}
 Examination of the directory structure revealed a complex hierarchical organization with several areas of particular forensic interest. Figure 6.3 provides a visual representation of the directory tree:
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{images/Evidence Examination/Image3.png}
     \caption{Directory Explorer View showing folder structure and suspicious directories}
@@ -130,7 +130,7 @@ Through specialized carving techniques applied to unallocated space, two signifi
     \end{itemize}
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{images/Evidence Examination/Image4.png}
     \caption{Hex View of Recovered Recipe in Unallocated Space showing cooking instructions}
@@ -142,7 +142,7 @@ Through specialized carving techniques applied to unallocated space, two signifi
 \subsection{Carving Results and Travel Evidence}
 Analysis of carved files from unallocated space yielded additional evidence of significant investigative value:
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{images/Evidence Examination/Image5.png}
     \caption{Recovered Flight Plan from Cardiff to Hawaii showing travel route and duration}
@@ -156,7 +156,7 @@ The file metadata visible in the table section of Figure 6.5 shows this file is 
 \subsection{Email Evidence Analysis}
 Examination of recovered email artifacts yielded critical evidence directly linking to steganography techniques used to conceal recipe information:
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{images/Evidence Examination/Image6.png}
     \caption{Email Artifact Recovery showing Base64-encoded content}
