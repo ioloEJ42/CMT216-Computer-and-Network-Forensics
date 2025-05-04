@@ -2,6 +2,9 @@
 % Page geometry
 \usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
 
+% Change "Chapter" to "Section"
+\renewcommand{\chaptername}{Section}
+
 % Headers and footers
 \pagestyle{fancy}
 \fancyhf{}
@@ -12,10 +15,10 @@
 \fancyfoot[C]{\thepage}
 \fancyfoot[L]{Forensic Analysis - Taurus Smith Case}
 
-% Adjust section formatting
+% Adjust section formatting with reduced spacing
 \titleformat{\chapter}[display]
-{\normalfont\huge\bfseries\color{darkblue}}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
-\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+{\normalfont\Large\bfseries\color{darkblue}}{\chaptertitlename\ \thechapter}{10pt}{\LARGE} % Reduced font size and spacing
+\titlespacing*{\chapter}{0pt}{20pt}{20pt} % Significantly reduced spacing (was 50pt/40pt)
 
 \titleformat{\section}
 {\normalfont\Large\bfseries\color{darkblue}}{\thesection}{1em}{}
@@ -72,3 +75,27 @@
 
 % Make document more forgiving of spacing issues
 \sloppy
+
+% Super simple TOC spacing reduction
+\makeatletter
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 0.2em \@plus\p@
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
+\makeatother
+
+% Reduce spacing in list of tables
+\makeatletter
+\renewcommand*\l@table{\@dottedtocline{1}{1.5em}{2.3em}}
+\makeatother
