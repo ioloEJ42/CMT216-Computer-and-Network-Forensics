@@ -4,6 +4,7 @@
 \input{styles/formatting.sty}
 \begin{document}
 % Title page with no page number
+%TC:ignore
 \begin{titlepage}
     \centering
     \vspace*{1cm}
@@ -28,6 +29,7 @@
     \vfill
 \end{titlepage}
 % Start Roman numeral page numbering for front matter
+%TC:endignore
 \pagenumbering{roman}
 % Table of contents
 \tableofcontents
@@ -51,6 +53,8 @@
 \input{sections/evidence-correlation.tex}
 \input{sections/findings.tex}
 \input{sections/conclusion.tex}
+%TC:ignore
 \input{sections/glossary.tex}
 \input{sections/references.tex}
+%TC:endignore
 \end{document}

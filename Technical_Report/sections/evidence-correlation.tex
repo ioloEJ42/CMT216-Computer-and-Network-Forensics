@@ -3,7 +3,7 @@
 \section{Cross-Source Analysis Methodology}
 The strength of digital forensic investigations lies not merely in the individual evidence artifacts recovered, but in establishing meaningful connections between seemingly disparate pieces of evidence. This chapter details the correlative analysis that links evidence from multiple sources into a cohesive narrative of events. By triangulating findings across filesystem artifacts, network captures, registry analysis, and cryptographic examination, we establish a comprehensive understanding of the alleged corporate espionage activities.
 
-\subsection{Temporal Correlation Framework}
+\subsection{Time Correlation }
 To establish a reliable timeline of events, timestamps from all evidence sources were normalized to UTC and mapped chronologically. This revealed significant clusters of activity concentrated between January and March 2010, with particular intensity in early March, immediately preceding the security incident at Lard\&land Donuts. The temporal correlation of activity across multiple evidence sources establishes a pattern of coordinated actions consistent with planned corporate espionage.
 
 \section{Implicated Individuals Analysis}
@@ -109,8 +109,8 @@ Beyond the thematic naming strategy, several sophisticated account concealment t
 These techniques collectively demonstrate a sophisticated understanding of Windows account architecture and forensic investigation methodologies, suggesting premeditated efforts to establish covert operational capabilities.
 
 \section{Recipe Concealment Methodology}
-\subsection{Multi-layered Steganographic Approach}
-The investigation revealed an elaborate, multi-layered approach to hiding proprietary recipe information using various steganographic techniques:
+\subsection{Steganographic Ofbuscation Techniques}
+The investigation revealed an elaborate approach to hiding proprietary recipe information using various steganographic techniques:
 
 \begin{itemize}
     \item \textbf{Primary Steganographic Layer}: Two critical images (bean.png and coconuts.png) contained steganographically embedded recipe text using the online tool referenced in recovered email communications (https://stylesuxx.github.io/steganography/).
@@ -126,8 +126,7 @@ The investigation revealed an elaborate, multi-layered approach to hiding propri
 Several technical indicators demonstrate the suspect's proficiency with steganographic techniques:
 
 \begin{itemize}
-    \item \textbf{Entropy Manipulation}: Both steganographic images show entropy scores (7.82 and 7.89) carefully calibrated to remain below the typical detection threshold of 7.9 while maximizing data capacity.
-    
+
     \item \textbf{Practice Progression}: The discovery of 'zebra.bmp' containing Shakespeare text demonstrates a methodical approach to testing and refining steganographic techniques before applying them to sensitive data.
     
     \item \textbf{Configuration Optimization}: Analysis of S-Tools found in the "tools" directory shows custom configuration settings optimized for balancing visual imperceptibility with data payload capacity.

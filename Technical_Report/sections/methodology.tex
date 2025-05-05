@@ -80,40 +80,10 @@ Autopsy's modular architecture was leveraged to implement a systematic examinati
 \label{tab:autopsy_modules}
 \end{table}
 
-\subsection{Advanced Module Configuration}
-
-\subsubsection{Encryption Detection Parameters}
-The Encryption Detection module was configured with specific parameters optimized for identifying potentially obfuscated proprietary data:
-
-\begin{itemize}
-    \item Minimum entropy threshold: 7.5 (calibrated to detect encrypted content while minimizing false positives)
-    \item Minimum file size: 5MB (focused on substantive encrypted containers)
-    \item Enhanced detection options:
-    \begin{itemize}
-        \item Analysis of files with sizes that are multiples of 512 bytes (common encryption block size)
-        \item Inclusion of slack space in analytical scope for partially overwritten encrypted data
-    \end{itemize}
-\end{itemize}
-
-The entropy threshold selection balanced sensitivity against false positive rates, with validation testing performed using known-encrypted sample files to verify detection efficacy.
-
-\subsubsection{Registry Analysis Configuration}
-Specialized registry analysis of the NTUSER.DAT file utilized Registry Explorer (version 1.6.0) and RegRipper (version 3.0) with the following focus areas:
-
-\begin{itemize}
-    \item User search history extraction and pattern analysis
-    \item Application execution frequency metrics with specific focus on Excel.exe usage
-    \item Most recently typed URLs identification
-    \item UserAssist record analysis for application usage patterns
-    \item MRU (Most Recently Used) list examination for document access history
-\end{itemize}
-
-Custom RegRipper plugins were developed to extract specific recipe-related search terms and document access patterns relevant to the investigation's focus.
-
 \section{Resource-Optimized Analysis Strategy}
 Given the computational constraints and investigative priorities, a resource-optimized analytical approach was implemented to maximize evidential yield within available resources.
 
-\subsection{Targeted Analysis Prioritization}
+\subsection{Analysis Prioritization}
 Rather than processing the entire evidence corpus with computationally intensive techniques, analysis was prioritized based on:
 
 \begin{itemize}

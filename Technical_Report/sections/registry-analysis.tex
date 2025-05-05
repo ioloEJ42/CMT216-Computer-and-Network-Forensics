@@ -88,34 +88,6 @@ One of the key requirements of this investigation was to determine Excel usage p
 
 This finding definitively answers the question posed in the investigation requirements regarding the number of times Excel was launched, with five distinct executions identified.
 
-\subsection{Excel Document Access}
-The RecentDocs entries provided critical evidence regarding the specific Excel files accessed:
-
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{|p{7cm}|p{3cm}|p{3cm}|}
-        \hline
-        \textbf{Filename} & \textbf{Format} & \textbf{Access Order} \\
-        \hline
-        "Undercover-Agents-List-For-United-States.xlsx" & .xlsx & Most recent \\
-        \hline
-        "CC-Backstopped-Accounts.xlsx" & .xlsx & Second \\
-        \hline
-        "Undercover-Agents-List-For-United-Kingdom.xls" & .xls & Earlier access \\
-        \hline
-    \end{tabular}
-    \caption{Excel files accessed according to RecentDocs registry key}
-    \label{tab:excel_files}
-\end{table}
-
-\textbf{Registry Path (XLSX):} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Windows\textbackslash CurrentVersion\textbackslash Explorer\textbackslash RecentDocs\textbackslash .xlsx}\\
-\textbf{LastWrite Time:} 2012-04-04 15:42:58Z
-
-\textbf{Registry Path (XLS):} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Windows\textbackslash CurrentVersion\textbackslash Explorer\textbackslash RecentDocs\textbackslash .xls}\\
-\textbf{LastWrite Time:} 2012-04-04 15:43:17Z
-
-The filenames suggest potential intelligence-related content, which, when considered alongside the findings from the steganographic and encryption analysis, indicates a sophisticated approach to data concealment. These Excel files may have been used to store or transport the proprietary recipes discovered elsewhere in the investigation. The mixture of .xls and .xlsx formats shows the use of both older and newer Excel file formats, potentially for compatibility with different systems.
-
 \section{Timeline Analysis}
 \subsection{Chronological Activity Reconstruction}
 By analyzing LastWrite timestamps across multiple registry keys, a comprehensive timeline of user activity was constructed:
