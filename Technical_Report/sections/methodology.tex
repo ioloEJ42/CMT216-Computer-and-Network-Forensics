@@ -1,182 +1,49 @@
 \chapter{Forensic Analysis Methodology}
 
-\section{Investigative Framework and Standards}
-This investigation follows an integrated framework combining established forensic methodologies from multiple authoritative sources:
+\section{Investigative Framework and Tools}
+This investigation adhered to established forensic standards (ACPO Guidelines, ISO/IEC 27037, NIST SP 800-86) to ensure evidence integrity and reproducibility. The primary forensic tools employed were:
 
 \begin{itemize}
-    \item \textbf{ACPO Guidelines for Digital Evidence}: Providing core principles for evidence handling and examination integrity
-    \item \textbf{ISO/IEC 27037}: International standards for identification, collection, acquisition, and preservation of digital evidence
-    \item \textbf{NIST SP 800-86}: Guidelines for integrating forensic techniques into incident response
+    \item \textbf{Autopsy (version 4.22.1 for Windows)}: Core forensic analysis of filesystem artifacts, deleted content recovery, file carving, and metadata examination
+    \item \textbf{Wireshark (version 4.4.6 for Windows)}: Network packet analysis and TCP session reconstruction
+    \item \textbf{AccessData Registry Viewer (version 2.0.0.7)}: Registry analysis and user activity identification
+    \item \textbf{John The Ripper (version 1.9.0)}: Password recovery for encrypted documents
+    \item \textbf{ExifTool (version 12.30)}: Metadata analysis of image files
 \end{itemize}
 
-This framework was selected to address the unique challenges presented by multi-source digital evidence analysis in corporate espionage cases, particularly where suspects may have employed anti-forensic measures to conceal activities.
+The analysis was conducted on a dedicated forensic workstation (AMD Ryzen 9 6900HX, 32GB DDR5 RAM, Windows 11 Pro 24H2) with hardware write-blockers and comprehensive logging to maintain evidence integrity. MD5 and SHA-256 hashing was employed throughout to verify evidence integrity.
 
-\section{Forensic Analysis Technology and Configuration}
+\section{Specialized Analysis Techniques}
 
-\subsection{Analysis Platform Configuration}
-The primary forensic analysis was conducted using Autopsy (version 4.22.1 for Windows) and Wireshark (version 4.4.6 for Windows) on a dedicated forensic workstation with the following specifications:
+\subsection{Data Recovery and Artifact Extraction}
+Key techniques employed for data recovery focused specifically on areas critical to answering the investigation objectives:
 
 \begin{itemize}
-    \item CPU: AMD Ryzen 9 6900HX with Radeon Graphics (8 cores, 16 threads)
-    \item RAM: 32GB DDR5 (2x16GB)
-    \item Storage: 2TB NVMe SSD (primary analysis) + 20TB HDD Array (evidence storage)
-    \item Network: Isolated forensic network with monitored connection points
-    \item Operating System: Windows 11 Pro (24H2) with security hardening
+    \item \textbf{File Carving}: Recovered deleted flight plan image from unallocated space using PhotoRec
+    \item \textbf{Steganography Detection}: Identified and extracted hidden recipe data from image files
+    \item \textbf{Password Recovery}: Successfully decrypted protected PDF and Excel files containing recipe information
+    \item \textbf{Registry Analysis}: Extracted search history, Excel usage count, and URL information from NTUSER.DAT
 \end{itemize}
 
-The workstation was configured with application whitelisting, USB device control, and comprehensive activity logging to maintain the integrity of the analysis environment.
-
-\subsection{Modular Forensic Examination Framework}
-Autopsy's modular architecture was leveraged to implement a systematic examination strategy across multiple evidence categories:
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{|p{5cm}|p{10cm}|}
-\hline
-\textbf{Module Category} & \textbf{Implemented Modules} \\
-\hline
-\textbf{File System Analysis} & 
-\begin{itemize}
-    \item File Type Identification
-    \item Extension Mismatch Detector
-    \item Interesting Files Identifier
-    \item Data Source Integrity
-\end{itemize} \\
-\hline
-\textbf{Content Analysis} & 
-\begin{itemize}
-    \item Keyword Search
-    \item Picture Analyzer
-    \item Email Parser
-    \item Embedded File Extractor
-    \item GPX Parser
-    \item YARA Analyzer
-\end{itemize} \\
-\hline
-\textbf{Activity Analysis} & 
-\begin{itemize}
-    \item Recent Activity
-    \item Central Repository
-    \item Targeted Timeline Analysis
-\end{itemize} \\
-\hline
-\textbf{Specialized Analysis} & 
-\begin{itemize}
-    \item Encryption Detection
-    \item PhotoRec Carver
-    \item Virtual Machine Extractor
-    \item Android Analyzer (aLEAPP)
-    \item iOS Analyzer (iLEAPP)
-\end{itemize} \\
-\hline
-\textbf{Verification} & 
-\begin{itemize}
-    \item Hash Lookup
-    \item Data Source Integrity
-\end{itemize} \\
-\hline
-\end{tabular}
-\caption{Autopsy Modules Deployed for Forensic Examination}
-\label{tab:autopsy_modules}
-\end{table}
-
-\section{Resource-Optimized Analysis Strategy}
-Given the computational constraints and investigative priorities, a resource-optimized analytical approach was implemented to maximize evidential yield within available resources.
-
-\subsection{Analysis Prioritization}
-Rather than processing the entire evidence corpus with computationally intensive techniques, analysis was prioritized based on:
+\subsection{Network Activity Analysis}
+Network traffic examination was conducted with specific focus on:
 
 \begin{itemize}
-    \item \textbf{User Directory Focus}: Analysis concentrated on user profiles and document repositories most likely to contain evidence relevant to the key investigative questions
-    
-    \item \textbf{Temporal Proximity}: Files and artifacts created or modified during time periods correlating with network activity between Smith's computer and the unauthorized device received priority analysis
-    
-    \item \textbf{File Type Prioritization}: Known steganography, encryption, and data exfiltration file formats received accelerated processing
-    
-    \item \textbf{Keyword Hit Concentration}: Areas with high concentrations of relevant keyword hits underwent more intensive scrutiny
+    \item TCP session reconstruction between Taurus Smith's computer (192.168.1.158) and the unknown device
+    \item Payload analysis of recipe transmission packets
+    \item VMware virtualization detection through MAC address analysis (VMware\_b0:8d:62)
+    \item Recovery of plaintext communications regarding Hawaii travel and steganography usage
 \end{itemize}
 
-\subsection{Iterative Analytical Process}
-Analysis proceeded through defined phases with continual refinement:
+\section{Evidence Correlation Methodology}
 
-\begin{enumerate}
-    \item \textbf{Initial Triage}: Rapid assessment to identify high-value targets for detailed analysis
-    
-    \item \textbf{Focused Examination}: Detailed analysis of high-probability evidence sources identified during triage
-    
-    \item \textbf{Correlation Analysis}: Integration of findings across evidence sources to develop investigative hypotheses
-    
-    \item \textbf{Hypothesis Testing}: Targeted examination to validate or refine investigative theories
-    
-    \item \textbf{Comprehensive Documentation}: Thorough documentation of findings and their interpretive context
-\end{enumerate}
-
-This approach facilitated efficient resource allocation while ensuring thorough examination of potentially relevant evidence.
-
-\section{Specialized Analytical Techniques}
-
-\subsection{Advanced Data Recovery Methodology}
-Specialized techniques were employed to recover potentially deleted or concealed data:
+The strength of digital forensic analysis lies in correlation across multiple evidence sources. To establish a comprehensive case narrative, the following correlation methodologies were employed:
 
 \begin{itemize}
-    \item \textbf{File Carving}: Signature-based recovery across unallocated space using PhotoRec Carver module
-    
-    \item \textbf{Slack Space Analysis}: Examination of file slack for fragment recovery
-    
-    \item \textbf{File System Journal Analysis}: Recovery of deleted file metadata from NTFS journal records
-    
-    \item \textbf{Shadow Copy Examination}: Analysis of Volume Shadow Copies for previous file versions
-    
-    \item \textbf{Memory Structure Recovery}: Reconstruction of file system structures to recover deleted directory entries
+    \item \textbf{Temporal Analysis}: Constructing precise timelines linking file creation, modification, network activity and registry entries
+    \item \textbf{Attribution Analysis}: Connecting Ken Warren and Mike to specific files through metadata
+    \item \textbf{Artifact Clustering}: Grouping related evidence (steganographic images, encrypted files) to identify operational patterns
+    \item \textbf{Technical Signature Matching}: Identifying consistent technical approaches across different evidence sources
 \end{itemize}
 
-\subsection{Anti-Forensic Countermeasure Analysis}
-The investigation incorporated specialized techniques to counter potential anti-forensic methods:
-
-\begin{itemize}
-    \item \textbf{Steganography Detection}: Statistical and visual analysis of media files for hidden content
-    
-    \item \textbf{Signature Verification}: Identification of files with mismatched headers and extensions
-    
-    \item \textbf{Timestamp Analysis}: Detection of manipulated file system timestamps through consistency checking
-    
-    \item \textbf{Embedded Content Extraction}: Recovery of hidden data within container files
-    
-    \item \textbf{Metadata Inconsistency Detection}: Identification of manipulated or sanitized metadata
-\end{itemize}
-
-\subsection{Network Forensics Methodology}
-Analysis of network communications employed a structured protocol-based analytical framework:
-
-\begin{itemize}
-    \item \textbf{Packet Capture Analysis}: Using Wireshark (version 3.6.2) for TCP/IP session reconstruction
-    
-    \item \textbf{Session Correlation}: Linking network timestamps with host-based artifacts
-    
-    \item \textbf{Protocol Analysis}: Examination of protocol-specific behaviors and anomalies
-    
-    \item \textbf{Traffic Pattern Identification}: Detection of data exfiltration signatures
-    
-    \item \textbf{Encryption Analysis}: Identification and classification of encrypted communications
-\end{itemize}
-
-Custom Wireshark display filters were created to isolate communication patterns specific to recipe transfer and data exfiltration scenarios.
-
-\section{Cross-Evidence Correlation and Synthesis}
-To develop a comprehensive understanding of the case, multiple correlation methodologies were employed to integrate findings across evidence sources:
-
-\begin{itemize}
-    \item \textbf{Temporal Correlation}: Linking file system activities with network events to establish activity timelines
-    
-    \item \textbf{Entity Relationship Mapping}: Connecting user accounts, files, and network communications
-    
-    \item \textbf{Behavioral Analysis}: Identifying patterns across different evidence sources that indicate specific user activities
-    
-    \item \textbf{Artifact Cross-Referencing}: Validating findings through identification of the same information across multiple data sources
-    
-    \item \textbf{Contextual Analysis}: Interpreting technical findings within the case-specific context
-\end{itemize}
-
-This multi-faceted analytical approach ensured that individual findings were considered within their broader investigative context, enabling more accurate interpretation of the evidence as a whole.
-
-The comprehensive methodology detailed in this chapter provided the framework for the systematic forensic analysis documented in subsequent sections. Each aspect of the methodology was selected to maximize the recovery and interpretation of evidence while maintaining strict adherence to forensic best practices and legal requirements.
+All findings were subjected to multiple validation checks to ensure accuracy, with hash verification performed throughout the analysis to maintain evidence integrity.

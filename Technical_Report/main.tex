@@ -29,7 +29,7 @@
     \vfill
 \end{titlepage}
 % Start Roman numeral page numbering for front matter
-%TC:endignore
+
 \pagenumbering{roman}
 % Table of contents
 \tableofcontents
@@ -37,11 +37,11 @@
 % List of Tables
 \listoftables
 \clearpage
+%TC:endignore
 % Switch to Arabic numerals for main content
 \pagenumbering{arabic}
 % Include sections
 \input{sections/executive-summary.tex}
-\input{sections/introduction.tex}
 \input{sections/chain-of-custody.tex}
 \input{sections/methodology.tex}
 \input{sections/evidence-acquisition.tex}
