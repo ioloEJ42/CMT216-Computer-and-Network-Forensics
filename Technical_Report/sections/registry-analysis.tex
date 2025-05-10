@@ -4,7 +4,7 @@
 The NTUSER.DAT registry hive was analyzed using FTK Imager (Version 4.7.1) and RegRipper (Version 3.0) to extract user activity data, search history, and application usage patterns. This analysis directly addresses investigation question 5 regarding user searches, Excel usage, and the latest typed URL.
 
 \section{Search Activity Analysis}
-The WordWheelQuery registry key (LastWrite: 2012-04-04 15:45:18Z) revealed searches directly related to donut research and potential corporate espionage:
+The WordWheelQuery registry key (LastWrite: 2010-04-04 15:45:18Z) revealed searches directly related to donut research and potential corporate espionage:
 
 \begin{table}[htbp]
     \centering
@@ -38,7 +38,7 @@ The UserAssist registry key provided definitive evidence regarding Excel usage:
 
 \begin{itemize}
     \item \textbf{Excel Execution Count:} \underline{5 distinct instances}
-    \item \textbf{Last Execution:} 2012-04-04 15:43:14Z
+    \item \textbf{Last Execution:} 2010-04-04 15:43:14Z
     \item \textbf{Excel Version:} Office 2010 (Office14)
 \end{itemize}
 
@@ -48,7 +48,7 @@ The UserAssist registry key provided definitive evidence regarding Excel usage:
 This finding directly answers question 5 regarding Excel usage frequency, confirming exactly 5 executions of Excel.exe.
 
 \section{Latest Typed URL Identification}
-Based on the TypedURLs registry key (LastWrite: 2012-04-03 22:37:55Z) and MRU order, the following URLs were found:
+Based on the TypedURLs registry key (LastWrite: 2010-04-03 22:37:55Z) and MRU order, the following URLs were found:
 
 \begin{table}[htbp]
     \centering
@@ -82,15 +82,15 @@ Registry LastWrite timestamps provide a chronological sequence of suspect activi
         \hline
         \textbf{Timestamp (UTC)} & \textbf{Activity} \\
         \hline
-        2012-04-03 22:12:41Z & Execution of suspicious "C:\textbackslash dllhot.exe" \\
+        2010-04-03 22:12:41Z & Execution of suspicious "C:\textbackslash dllhot.exe" \\
         \hline
-        2012-04-03 22:37:55Z & Direct access to IP 131.10.28.251:53 and cardiffdonut.com \\
+        2010-04-03 22:37:55Z & Direct access to IP 131.10.28.251:53 and cardiffdonut.com \\
         \hline
-        2012-04-04 15:43:14Z & Excel last execution \\
+        2010-04-04 15:43:14Z & Excel last execution \\
         \hline
-        2012-04-04 15:45:18Z & Final search queries performed \\
+        2010-04-04 15:45:18Z & Final search queries performed \\
         \hline
-        2012-04-04 15:52:45Z & Command prompt (cmd.exe) last executed \\
+        2010-04-04 15:52:45Z & Command prompt (cmd.exe) last executed \\
         \hline
     \end{tabular}
     \caption{Activity timeline from registry LastWrite times}
@@ -108,7 +108,7 @@ Several registry artifacts indicated sophisticated operational security measures
     \item Command-line operations as the final activity, potentially for cleanup
 \end{itemize}
 
-\textbf{Registry Path:} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Windows\textbackslash CurrentVersion\textbackslash Explorer\textbackslash RecentDocs\textbackslash Folder} (LastWrite: 2012-04-04 15:43:17Z)
+\textbf{Registry Path:} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Windows\textbackslash CurrentVersion\textbackslash Explorer\textbackslash RecentDocs\textbackslash Folder} (LastWrite: 2010-04-04 15:43:17Z)
 
 \section{Registry Analysis Conclusions}
 This analysis of the NTUSER.DAT registry hive directly answers question 5 from the investigation requirements:
