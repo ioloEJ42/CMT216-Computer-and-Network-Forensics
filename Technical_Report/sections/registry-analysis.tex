@@ -48,15 +48,28 @@ The UserAssist registry key provided definitive evidence regarding Excel usage:
 This finding directly answers question 5 regarding Excel usage frequency, confirming exactly 5 executions of Excel.exe.
 
 \section{Latest Typed URL Identification}
-Based on the TypedURLs registry key (LastWrite: 2012-04-03 22:37:55Z) and MRU order, the most recently typed URL was:
+Based on the TypedURLs registry key (LastWrite: 2012-04-03 22:37:55Z) and MRU order, the following URLs were found:
 
-\begin{center}
-\textbf{\url{http://cardiffdonut.com/fwlink/?LinkId=69157}}
-\end{center}
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|l|p{11cm}|}
+        \hline
+        \textbf{URL Key} & \textbf{URL Value} \\
+        \hline
+        url1 & \url{http://131.10.28.251:53/} \\
+        \hline
+        url2 & \url{http://cardiffdonut.com/fwlink/?LinkId=69157} \\
+        \hline
+    \end{tabular}
+    \caption{Typed URLs from NTUSER.DAT registry key}
+    \label{tab:typed_urls}
+\end{table}
 
 \textbf{Registry Path:} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Internet Explorer\textbackslash TypedURLs}
 
-This URL contains a domain name directly related to donuts in Cardiff and uses Microsoft's forwarding link pattern (?LinkId=). This finding directly answers the third part of question 5 regarding the latest typed URL.
+Based on the MRU (Most Recently Used) order, the most recently typed URL was \url{http://cardiffdonut.com/fwlink/?LinkId=69157}. This URL contains a domain name directly related to donuts in Cardiff and uses Microsoft's forwarding link pattern (?LinkId=). The direct access to a raw IP address (131.10.28.251) using DNS port 53 is forensically significant as this is highly unusual for normal browsing and may indicate DNS tunneling or other covert communication techniques.
+
+This finding directly answers the third part of question 5 regarding the latest typed URL.
 
 \section{Additional Suspicious Registry Artifacts}
 
