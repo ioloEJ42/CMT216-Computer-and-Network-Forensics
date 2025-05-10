@@ -1,30 +1,10 @@
 \chapter{NTUSER.DAT Registry Analysis}
 
-\section{Introduction to Registry Analysis}
-The NTUSER.DAT file constitutes a critical element in Windows forensics, as it contains user-specific configuration data, application settings, and historical activity records. This registry hive maintains a detailed record of user-specific activities and preferences, providing substantial forensic value in establishing user behavior patterns and intentions. For this investigation, registry analysis allows us to identify the suspect's search histories, file access patterns, and application usage, offering valuable context for other digital evidence discovered during the examination.
-
-\subsection{Technical Approach and Tools}
-For this analysis, two industry-standard tools were employed to extract and interpret the registry data:
-
-\begin{itemize}
-    \small
-    \item \textbf{FTK Imager (Version 4.7.1)}: Used to initially mount and extract the NTUSER.DAT file from the provided evidence image while maintaining forensic integrity
-    \item \textbf{RegRipper (Version 3.0)}: Deployed to parse the registry hive and extract relevant forensic artifacts in a structured format
-\end{itemize}
-
-The analysis methodology utilized a systematic approach to registry examination, targeting specific keys known to contain user activity data:
-
-\begin{enumerate}
-    \item Extraction of the NTUSER.DAT file using forensically sound procedures
-    \item Verification of hive integrity through hash calculation
-    \item Targeted parsing of forensically valuable registry keys
-    \item Temporal analysis to establish a timeline of user activities
-    \item Correlation of registry artifacts with other evidence sources
-\end{enumerate}
+\section{Registry Evidence Extraction}
+The NTUSER.DAT registry hive was analyzed using FTK Imager (Version 4.7.1) and RegRipper (Version 3.0) to extract user activity data, search history, and application usage patterns. This analysis directly addresses investigation question 5 regarding user searches, Excel usage, and the latest typed URL.
 
 \section{Search Activity Analysis}
-\subsection{Windows Search Queries}
-Analysis of the WordWheelQuery key revealed search patterns directly related to donut research and potential corporate espionage activities:
+The WordWheelQuery registry key (LastWrite: 2012-04-04 15:45:18Z) revealed searches directly related to donut research and potential corporate espionage:
 
 \begin{table}[htbp]
     \centering
@@ -45,40 +25,19 @@ Analysis of the WordWheelQuery key revealed search patterns directly related to 
         "best donut" & Competitive analysis & 6 \\
         \hline
     \end{tabular}
-    \caption{Search queries extracted from NTUSER.DAT (Last modified: 2012-04-04 15:45:18Z)}
+    \caption{Search queries from NTUSER.DAT showing donut research progression}
     \label{tab:search_queries}
 \end{table}
 
-The temporal sequence in Figure \ref{tab:search_queries} demonstrates a progression from general donut research to location-specific queries focused on Cardiff. This directly corroborates other evidence found in the investigation, particularly the network communications regarding donut recipes. The search for "newrecipe" is especially significant as it aligns with the evidence of recipe theft uncovered in the steganographic analysis.
+\textbf{Registry Path:} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Windows\textbackslash CurrentVersion\textbackslash Explorer\textbackslash WordWheelQuery}
 
-\texttt{\small NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Windows\textbackslash CurrentVersion\\\textbackslash Explorer\textbackslash WordWheelQuery}
+The progression from general donut research to location-specific queries focused on Cardiff directly corroborates evidence found in the network communications and flight plan.
 
-\subsection{Direct URL Access}
-The TypedURLs registry key provided additional evidence of suspicious internet activity:
-
-\begin{itemize}
-    \item \texttt{url1: "http://131.10.28.251:53/"} - Direct IP address access using DNS port (53)
-    \item \texttt{url2: \url{http://cardiffdonut.com/fwlink/?LinkId=69157}} - Domain consistent with search queries
-\end{itemize}
-
-\textbf{Registry Path:} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Internet Explorer\textbackslash TypedURLs}\\
-\textbf{LastWrite Time:} 2012-04-03 22:37:55Z
-
-The direct access to an IP address with port 53 (typically associated with DNS services) represents an anomalous pattern that warrants security investigation. This could indicate:
-\begin{itemize}
-    \item Attempted access to internal network resources
-    \item Communication with a command and control server
-    \item Use of DNS tunneling to exfiltrate data
-\end{itemize}
-
-This finding correlates with the network traffic analysis, where we identified the use of non-standard ports and evidence of data exfiltration techniques.
-
-\section{Microsoft Excel Usage Analysis}
-\subsection{Excel Access Frequency}
-One of the key requirements of this investigation was to determine Excel usage patterns. The UserAssist registry key revealed:
+\section{Excel Usage Analysis}
+The UserAssist registry key provided definitive evidence regarding Excel usage:
 
 \begin{itemize}
-    \item \textbf{Excel Execution Count:} 5 distinct instances
+    \item \textbf{Excel Execution Count:} \underline{5 distinct instances}
     \item \textbf{Last Execution:} 2012-04-04 15:43:14Z
     \item \textbf{Excel Version:} Office 2010 (Office14)
 \end{itemize}
@@ -86,11 +45,23 @@ One of the key requirements of this investigation was to determine Excel usage p
 \textbf{Registry Path:} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Windows\textbackslash CurrentVersion\textbackslash Explorer\textbackslash UserAssist}\\
 \textbf{Entry:} \texttt{\{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E\}\textbackslash Microsoft Office\textbackslash Office14\textbackslash EXCEL.EXE (5)}
 
-This finding definitively answers the question posed in the investigation requirements regarding the number of times Excel was launched, with five distinct executions identified.
+This finding directly answers question 5 regarding Excel usage frequency, confirming exactly 5 executions of Excel.exe.
 
-\section{Timeline Analysis}
-\subsection{Chronological Activity Reconstruction}
-By analyzing LastWrite timestamps across multiple registry keys, a comprehensive timeline of user activity was constructed:
+\section{Latest Typed URL Identification}
+Based on the TypedURLs registry key (LastWrite: 2012-04-03 22:37:55Z) and MRU order, the most recently typed URL was:
+
+\begin{center}
+\textbf{\url{http://cardiffdonut.com/fwlink/?LinkId=69157}}
+\end{center}
+
+\textbf{Registry Path:} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Internet Explorer\textbackslash TypedURLs}
+
+This URL contains a domain name directly related to donuts in Cardiff and uses Microsoft's forwarding link pattern (?LinkId=). This finding directly answers the third part of question 5 regarding the latest typed URL.
+
+\section{Additional Suspicious Registry Artifacts}
+
+\subsection{Timeline of Key Activities}
+Registry LastWrite timestamps provide a chronological sequence of suspect activities:
 
 \begin{table}[htbp]
     \centering
@@ -98,149 +69,48 @@ By analyzing LastWrite timestamps across multiple registry keys, a comprehensive
         \hline
         \textbf{Timestamp (UTC)} & \textbf{Activity} \\
         \hline
-        2012-04-03 21:19:54Z & Initial user profile configuration \\
+        2012-04-03 22:12:41Z & Execution of suspicious "C:\textbackslash dllhot.exe" \\
         \hline
-        2012-04-03 22:11:22Z & Network drive mapped ("\textbackslash\textbackslash controller\textbackslash public") \\
-        \hline
-        2012-04-03 22:12:41Z & Execution of "C:\textbackslash dllhot.exe" \\
-        \hline
-        2012-04-03 22:32:51Z & Internet Explorer first used \\
-        \hline
-        2012-04-03 22:37:55Z & Direct URLs accessed (IP address and cardiffdonut.com) \\
-        \hline
-        2012-04-03 22:39:19Z & Firefox browser used \\
-        \hline
-        2012-04-04 15:42:58Z & Excel .xlsx files accessed \\
+        2012-04-03 22:37:55Z & Direct access to IP 131.10.28.251:53 and cardiffdonut.com \\
         \hline
         2012-04-04 15:43:14Z & Excel last execution \\
         \hline
-        2012-04-04 15:43:17Z & Excel .xls files accessed \\
-        \hline
-        2012-04-04 15:45:18Z & Last search queries performed \\
+        2012-04-04 15:45:18Z & Final search queries performed \\
         \hline
         2012-04-04 15:52:45Z & Command prompt (cmd.exe) last executed \\
         \hline
     \end{tabular}
-    \caption{Chronological timeline of user activities from registry analysis}
+    \caption{Activity timeline from registry LastWrite times}
     \label{tab:activity_timeline}
 \end{table}
 
-This timeline reveals concentrated activity during April 3-4, 2012, with significant events related to donut research, Excel file access, and potential corporate espionage activities. The temporal proximity between Excel file access and search queries about donuts and recipes provides compelling evidence of focused research and data collection related to the alleged recipe theft.
-
-\subsection{Browser Usage Analysis}
-The UserAssist entries also revealed browser usage patterns:
+\subsection{Notable Security Indicators}
+Several registry artifacts indicated sophisticated operational security measures:
 
 \begin{itemize}
-    \item Internet Explorer used once (2012-04-03 22:32:51Z)
-    \item Firefox 5.0.1 used twice (2012-04-03 22:39:19Z)
+    \item Execution of non-standard application "dllhot.exe" from root directory
+    \item Direct access to an IP address with DNS port (53), suggesting potential tunneling
+    \item Access to folders with suspicious names: "Agents-List-CLASSIFIED-TOP-SECRET" and "CC R\&D Backstopped Accounts"
+    \item Browser switching between Internet Explorer and Firefox, suggesting compartmentalized activities
+    \item Command-line operations as the final activity, potentially for cleanup
 \end{itemize}
 
-This indicates a preference for Firefox over Internet Explorer, or potentially a switch between browsers during the session. When correlated with the direct URL access timestamps, this suggests the user may have switched browsers for different types of web activity, possibly to compartmentalize their research.
+\textbf{Registry Path:} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Windows\textbackslash CurrentVersion\textbackslash Explorer\textbackslash RecentDocs\textbackslash Folder} (LastWrite: 2012-04-04 15:43:17Z)
 
-\section{Latest Typed URL}
-One of the key requirements of this investigation was to identify the latest typed URL. Based on the TypedURLs registry key LastWrite time (2012-04-03 22:37:55Z) and the MRU order, the most recently typed URL was:
-
-
-\url{http://cardiffdonut.com/fwlink/?LinkId=69157}
-
-
-This URL is significant as it:
-\begin{itemize}
-    \item Contains a domain name directly related to donuts in Cardiff
-    \item Uses Microsoft's forwarding link pattern (?LinkId=)
-    \item Was accessed prior to the Excel file activities
-\end{itemize}
-
-This finding directly addresses the investigation requirement to identify the latest typed URL and provides additional context for the suspect's online activities related to donuts in Cardiff.
-
-\section{Suspicious Activity Indicators}
-\subsection{Potentially Malicious Software Execution}
-The UserAssist key revealed the execution of a suspicious application:
+\section{Registry Analysis Conclusions}
+This analysis of the NTUSER.DAT registry hive directly answers question 5 from the investigation requirements:
 
 \begin{itemize}
-    \item \textbf{Application:} "C:\textbackslash dllhot.exe"
-    \item \textbf{Execution Count:} 1
-    \item \textbf{Timestamp:} 2012-04-03 22:12:41Z
+    \item \textbf{User Search History}: Searches focused on donuts, recipes, and specifically Cardiff-based businesses
+    \item \textbf{Excel.exe Usage Count}: Excel was executed \underline{exactly 5 times}
+    \item \textbf{Latest Typed URL}: \url{http://cardiffdonut.com/fwlink/?LinkId=69157}
 \end{itemize}
 
-The filename "dllhot.exe" is non-standard and potentially indicates malware or unauthorized software. Its placement in the root directory (C:\textbackslash) is unusual and does not follow standard Windows application installation patterns. This could represent:
+Additionally, the registry evidence corroborates findings from other investigation sections by:
 
 \begin{itemize}
-    \item A data exfiltration tool
-    \item Unauthorized remote access software
-    \item Custom tool for steganography or encryption
+    \item Confirming Cardiff connection through search history and URL access
+    \item Demonstrating intentional research into donut recipes
+    \item Revealing suspicious software usage and command-line operations
+    \item Establishing a timeline consistent with data exfiltration activities
 \end{itemize}
-
-When considered alongside the evidence of steganography and encrypted files found elsewhere in the investigation, this suspicious application could be linked to the techniques used to conceal the proprietary recipes.
-
-\subsection{Sensitive Folder Access}
-The RecentDocs folder entries showed access to potentially sensitive directories:
-
-\begin{itemize}
-    \item "Agents-List-CLASSIFIED-TOP-SECRET" (most recent)
-    \item "CC R\&D Backstopped Accounts"
-    \item "HQ"
-    \item "Carrier Landing Pad"
-    \item "Downloads"
-\end{itemize}
-
-\textbf{Registry Path:} \texttt{NTUSER.DAT\textbackslash Software\textbackslash Microsoft\textbackslash Windows\textbackslash CurrentVersion\textbackslash Explorer\textbackslash RecentDocs\textbackslash Folder}\\
-\textbf{LastWrite Time:} 2012-04-04 15:43:17Z
-
-The folder names suggest access to sensitive or classified information, which correlates with the evidence of sophisticated data concealment techniques found in the steganographic and encryption analysis sections of this investigation.
-
-\section{Command-Line Usage}
-The UserAssist key revealed limited but significant command-line tool usage:
-
-\begin{itemize}
-    \item Command prompt (cmd.exe) used twice
-    \item Last cmd.exe usage timestamp: 2012-04-04 15:52:45Z
-    \item Calculator (calc.exe) used 12 times
-\end{itemize}
-
-The last recorded activity in the entire registry analysis was the use of the command prompt, suggesting that command-line operations may have been the final actions performed before system shutdown or evidence collection. The frequent calculator usage might indicate financial calculations or numeric data processing related to the recipes or planning activities.
-
-\section{Correlation with Other Evidence}
-\subsection{Connection to Steganographic Evidence}
-The registry findings strongly correlate with evidence discovered in the steganographic analysis:
-
-\begin{itemize}
-    \item The search for "newrecipe" aligns with the recipe content discovered in steganographically concealed images
-    \item The execution of unusual applications like "dllhot.exe" could be related to the steganographic tools used
-    \item The timeline of Excel file access precedes the last search queries, suggesting a pattern of research followed by data consolidation
-\end{itemize}
-
-\subsection{Connection to Network Evidence}
-The registry findings also correlate with the network traffic analysis:
-
-\begin{itemize}
-    \item The direct access to an IP address with port 53 suggests unusual network activity, supporting the findings of non-standard port usage in the network analysis
-    \item The Cardiff-specific searches align with the company location of Lard\&land Donuts
-    \item The timeline of command-line usage could align with the data transfer activities observed in the network traffic
-\end{itemize}
-
-\subsection{Connection to Travel Plans}
-The Cardiff-focused searches in the registry align with the evidence of travel plans found elsewhere:
-
-\begin{itemize}
-    \item Searches for "cardiff donut" indicate location-specific research
-    \item The direct URL access to a Cardiff-related domain reinforces the connection to this location
-    \item The chronological sequence suggests research about Cardiff occurred before evidence of Hawaii travel plans appeared in other artifacts
-\end{itemize}
-
-\section{Conclusions from Registry Analysis}
-The comprehensive analysis of the NTUSER.DAT registry hive has yielded several significant conclusions:
-
-\begin{enumerate}
-    \item \textbf{Confirmed Excel Usage}: Excel was executed exactly 5 times, providing a definitive answer to one of the key investigation requirements.
-    
-    \item \textbf{Donut Research Focus}: The search history clearly demonstrates focused research on donuts, new recipes, and specifically Cardiff-based donut businesses, strongly supporting the allegation of corporate espionage targeting Lard\&land Donuts.
-    
-    \item \textbf{Latest Typed URL}: The latest typed URL was identified as \url{http://cardiffdonut.com/fwlink/?LinkId=69157}, directly answering another key investigation requirement.
-    
-    \item \textbf{Suspicious Activities}: Evidence of suspicious software execution, unusual network access, and sensitive file operations collectively supports the hypothesis of deliberate and sophisticated data theft.
-    
-    \item \textbf{Chronological Alignment}: The timeline of activities reconstructed from registry timestamps aligns with and supports the evidence found in other aspects of the investigation, creating a coherent narrative of the suspect's actions.
-\end{enumerate}
-
-The registry analysis provides the technical foundation for establishing a pattern of behavior consistent with corporate espionage, including research on the target company's products, access to sensitive files, and the execution of tools that could facilitate data theft and concealment. When combined with the steganographic, encryption, and network evidence, these registry findings significantly strengthen the case against Taurus Smith and potential accomplices.
